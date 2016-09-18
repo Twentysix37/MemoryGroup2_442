@@ -46,7 +46,7 @@ public class menuScript : MonoBehaviour {
 	}
 
 	public void Startlevel(){
-		//load a picture
+		Application.LoadLevel ("Game");
 	}
 
 	public void ExitGame(){
