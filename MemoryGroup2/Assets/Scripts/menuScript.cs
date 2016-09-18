@@ -22,6 +22,7 @@ public class menuScript : MonoBehaviour {
 		difficultyMenu = difficultyMenu.GetComponent<Canvas> ();
 		quitMenu.enabled = false;
 		optionsMenu.enabled = false;
+		difficultyMenu.enabled = false;
 	}
 
 	public void ExitPress(){
