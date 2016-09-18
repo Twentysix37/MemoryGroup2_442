@@ -10,6 +10,7 @@ public class menuScript : MonoBehaviour {
 	public Button exitText;
 	public Button optionsText;
 	public Canvas optionsMenu;
+	public Canvas difficultyMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class menuScript : MonoBehaviour {
 		startText = startText.GetComponent<Button> ();
 		exitText = exitText.GetComponent<Button> ();
 		optionsText = optionsText.GetComponent<Button> ();
+		difficultyMenu = difficultyMenu.GetComponent<Canvas> ();
 		quitMenu.enabled = false;
 		optionsMenu.enabled = false;
 	}
@@ -28,6 +30,7 @@ public class menuScript : MonoBehaviour {
 		optionsText.enabled = false;
 		startText.enabled = false;
 		exitText.enabled = false;
+		difficultyMenu.enabled = false;
 	}
 	public void OptionsPress(){
 		quitMenu.enabled = false;
@@ -35,6 +38,7 @@ public class menuScript : MonoBehaviour {
 		optionsText.enabled = false;
 		startText.enabled = false;
 		exitText.enabled = false;
+		difficultyMenu.enabled = false;
 	}
 
 	public void noPress (){
@@ -43,15 +47,29 @@ public class menuScript : MonoBehaviour {
 		startText.enabled = true;
 		exitText.enabled = true;
 		optionsText.enabled = true;
+		difficultyMenu.enabled = false;
 
 	}
 
 	public void difficultPress(){
+		quitMenu.enabled = false;
+		optionsMenu.enabled = false;
+		optionsText.enabled = false;
+		startText.enabled = false;
+		exitText.enabled = false;
+		difficultyMenu.enabled = true;
+	}
+	public void backPress(){
 		optionsMenu.enabled = false;
 		quitMenu.enabled = false;
 		startText.enabled = true;
 		exitText.enabled = true;
 		optionsText.enabled = true;
+		difficultyMenu.enabled = false;
+	}
+	public void EasyMedHardPress() {
+		//set to go back to menu
+		backPress();
 	}
 
 	public void Startlevel(){
