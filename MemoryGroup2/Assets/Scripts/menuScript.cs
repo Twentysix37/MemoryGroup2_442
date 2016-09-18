@@ -46,6 +46,14 @@ public class menuScript : MonoBehaviour {
 
 	}
 
+	public void difficultPress(){
+		optionsMenu.enabled = false;
+		quitMenu.enabled = false;
+		startText.enabled = true;
+		exitText.enabled = true;
+		optionsText.enabled = true;
+	}
+
 	public void Startlevel(){
 		//Application.LoadLevel ("Game");
 		SceneManager.LoadScene ("Game");
