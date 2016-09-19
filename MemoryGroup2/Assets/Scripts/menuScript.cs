@@ -33,6 +33,7 @@ public class menuScript : MonoBehaviour {
 		exitText.enabled = false;
 		difficultyMenu.enabled = false;
 	}
+
 	public void OptionsPress(){
 		quitMenu.enabled = false;
 		optionsMenu.enabled = true;
@@ -49,7 +50,6 @@ public class menuScript : MonoBehaviour {
 		exitText.enabled = true;
 		optionsText.enabled = true;
 		difficultyMenu.enabled = false;
-
 	}
 
 	public void difficultPress(){
@@ -60,6 +60,7 @@ public class menuScript : MonoBehaviour {
 		exitText.enabled = false;
 		difficultyMenu.enabled = true;
 	}
+
 	public void backPress(){
 		optionsMenu.enabled = false;
 		quitMenu.enabled = false;
@@ -68,6 +69,7 @@ public class menuScript : MonoBehaviour {
 		optionsText.enabled = true;
 		difficultyMenu.enabled = false;
 	}
+
 	public void EasyMedHardPress() {
 		//set to go back to menu
 		backPress();
