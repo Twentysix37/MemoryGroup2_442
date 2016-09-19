@@ -1,0 +1,16 @@
+date: September 17, 2016
+meeting_type: group
+attendance: [<ronyparm>, <joelhigh>]
+absent: [<ambehr>]
+excused_absences: [ 
+  {ubit: <ambehr>, : reason: Had work }
+  ]
+task_progress: [
+  {ubit: <ambehr>, progress: None},
+  {ubit: <ronyparm>, progress: Continued working on menu and setup github},
+  {ubit: <joelhigh>, progress: Setting up unity file structure/ fixing repository }
+  ]
+issues: {None
+  ]
+Notes:  | 
+  Finalized menu look and worked in Unity to get the menu up for Sprint 1.

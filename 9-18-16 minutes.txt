@@ -1,0 +1,17 @@
+date: September 18, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ None
+  ]
+task_progress: [
+  {ubit: <ambehr>, progress: Caught up the minutes for past meetings},
+  {ubit: <ronyparm>, progress: Finished Menu for sprint 1 },
+  {ubit: <joelhigh>, progress: set up game scence }
+  ]
+issues: [ 
+  ]
+Notes:  | 
+  Made the finishing touches to the game for the sprint 1 requirements. 
+  Talked about how we want the game to look moving forward. 
+  
