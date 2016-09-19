@@ -6,7 +6,7 @@ excused_absences: [ None
   ]
 task_progress: [ 
   {ubit: <ambehr>, progress: Set up the repository with joel},
-  {ubit: <ronyparm>, progress:Started Menu within Unity },
+  {ubit: <ronyparm>, progress: Started Menu within Unity },
   {ubit: <joelhigh>, progress: Setting up repository. }
   ]
 issues: [ 

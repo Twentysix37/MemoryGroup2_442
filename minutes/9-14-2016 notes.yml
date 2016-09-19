@@ -11,5 +11,7 @@ task_progress:
   {ubit: <joelhigh>, progress: None}
   {ubit: <rrswartz>, progress: None}
   ]
-issues: None
-Notes:  | Working out a layout to our game and working on getting the menu done for sprint 1
+issues: [None
+]
+Notes:  | 
+  Working out a layout to our game and working on getting the menu done for sprint 1

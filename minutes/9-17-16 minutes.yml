@@ -10,7 +10,7 @@ task_progress: [
   {ubit: <ronyparm>, progress: Continued working on menu and setup github},
   {ubit: <joelhigh>, progress: Setting up unity file structure/ fixing repository }
   ]
-issues: {None
+issues: [None
   ]
 Notes:  | 
   Finalized menu look and worked in Unity to get the menu up for Sprint 1.
