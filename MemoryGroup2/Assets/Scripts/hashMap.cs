@@ -61,7 +61,7 @@ public class hashMap : MonoBehaviour {
 
 		for (int i = 0; i < 3; i++) {
 
-			name = kList.ElementAt ((int)Random.value);
+			name = kList.ElementAt ((int)(Random.Range(0, 11)));
 			valueOfName = theHash [name];
 			newHash.Add (name, valueOfName);
 			theHash.Remove (name);
