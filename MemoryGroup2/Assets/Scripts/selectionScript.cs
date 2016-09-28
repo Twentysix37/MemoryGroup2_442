@@ -6,9 +6,12 @@ using System.Collections;
 public class selectionScript : MonoBehaviour {
 
 	public Canvas selectionMenu;
+	public Canvas valueCanvas;
 	public Button characterOne;
 	public Button characterTwo;
 	public Button characterThree;
+	public Button valueOne;
+	public Button valueTwo;
 	public Image char1;
 	public Image char2;
 	public Image char3;
@@ -23,15 +26,19 @@ public class selectionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		selectionMenu = selectionMenu.GetComponent<Canvas> ();
+		valueCanvas = valueCanvas.GetComponent<Canvas> ();
 		characterOne = characterOne.GetComponent<Button> ();
 		characterTwo = characterTwo.GetComponent<Button> ();
 		characterThree = characterThree.GetComponent<Button> ();
+		valueOne = valueOne.GetComponent<Button> ();
+		valueTwo = valueTwo.GetComponent<Button> ();
 		char1 = char1.GetComponent<Image> ();
 		char2 = char2.GetComponent<Image> ();
 		char3 = char3.GetComponent<Image> ();
 		char4 = char4.GetComponent<Image> ();
 		char5 = char5.GetComponent<Image> ();
 		char6 = char6.GetComponent<Image> ();
+		valueCanvas.enabled = false;
 		char1.enabled = false;
 		char2.enabled = false;
 		char3.enabled = false;
@@ -40,6 +47,8 @@ public class selectionScript : MonoBehaviour {
 		char6.enabled = false;
 		User1.enabled = true;
 		CPU.enabled = false;
+		valueOne.enabled = false;
+		valueTwo.enabled = false;
 		selectCounter = 0;
 	}
 
@@ -52,6 +61,31 @@ public class selectionScript : MonoBehaviour {
 			User1.enabled = false;
 			CPU.enabled = true;
 		}
+	}
+
+	public void valuePicker (){
+		characterOne.interactable = false;
+		characterTwo.interactable = false;
+		characterThree.interactable = false;
+		valueCanvas.enabled = true;
+		valueOne.enabled = true;
+		valueTwo.enabled = true;
+	}
+
+	public void spawnOne (){
+		characterOne.interactable = true;
+		characterTwo.interactable = true;
+		characterThree.interactable = true;
+		valueCanvas.enabled = false;
+		//associate value to character
+	}
+
+	public void spawnTwo (){
+		characterOne.interactable = true;
+		characterTwo.interactable = true;
+		characterThree.interactable = true;
+		valueCanvas.enabled = false;
+		//associate value to character
 	}
 
 	public void characterOnePress(){
@@ -73,6 +107,7 @@ public class selectionScript : MonoBehaviour {
 			char5.enabled = false;
 			char6.enabled = false;
 		}
+		valuePicker ();
 	}
 
 	public void characterTwoPress(){
@@ -94,6 +129,7 @@ public class selectionScript : MonoBehaviour {
 			char5.enabled = true;
 			char6.enabled = false;
 		}
+		valuePicker ();
 	}
 
 	public void characterThreePress(){
@@ -115,6 +151,7 @@ public class selectionScript : MonoBehaviour {
 			char5.enabled = false;
 			char6.enabled = true;
 		}
+		valuePicker ();
 	}
 
 
