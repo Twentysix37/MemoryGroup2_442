@@ -15,7 +15,7 @@ public class CharacterSelection : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameObject CharactorSelectButton = new GameObject ();
-		CharactorSelectButton.transform.SetParent();
+		//CharactorSelectButton.transform.SetParent();
 	}
 	
 	// Update is called once per frame
