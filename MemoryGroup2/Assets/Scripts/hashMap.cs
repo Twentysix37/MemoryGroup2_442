@@ -5,14 +5,10 @@ using System.Linq;
 
 public class hashMap : MonoBehaviour {
 
-	Dictionary<string, List<string>> theHash = new Dictionary<string, List<string>>();
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-
-	public void MakeHash(){
+		Dictionary<string, List<string>> theHash = new Dictionary<string, List<string>>();
 
 		theHash.Add("Frank", GetValue("Frank", "1"));
 		theHash.Add("Curt", GetValue("Curt", "3"));
@@ -26,9 +22,9 @@ public class hashMap : MonoBehaviour {
 		theHash.Add ("Travis", GetValue("Travis", "2"));
 		theHash.Add ("Monica", GetValue("Monica", "4"));
 		theHash.Add ("Dan", GetValue("Dan", "3"));
-
-
+	
 	}
+
 
 	public List<string> GetValue(string firstItem, string secondItem){
 
@@ -43,12 +39,11 @@ public class hashMap : MonoBehaviour {
 
 	public List<string> GetKeys(){
 
-		MakeHash ();
-
 		List<string> keyList = new List<string> (theHash.Keys);
 
 		return keyList;
 	}
+
 
 	//returns the values for a specific hash 
 	public Dictionary<string, List<string>> GetHash(){
