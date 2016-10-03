@@ -5,10 +5,11 @@ using System.Linq;
 
 public class hashMap : MonoBehaviour {
 
+	Dictionary<string, List<string>> theHash = new Dictionary<string, List<string>>();
+
 
 	// Use this for initialization
 	void Start () {
-		Dictionary<string, List<string>> theHash = new Dictionary<string, List<string>>();
 
 		theHash.Add("Frank", GetValue("Frank", "1"));
 		theHash.Add("Curt", GetValue("Curt", "3"));
@@ -22,6 +23,18 @@ public class hashMap : MonoBehaviour {
 		theHash.Add ("Travis", GetValue("Travis", "2"));
 		theHash.Add ("Monica", GetValue("Monica", "4"));
 		theHash.Add ("Dan", GetValue("Dan", "3"));
+		theHash.Add("Fred", GetValue("Fred", "1"));
+		theHash.Add("Chris", GetValue("Chris", "3"));
+		theHash.Add ("Tom", GetValue("Tom", "4"));
+		theHash.Add ("Emily", GetValue("Emily", "2"));
+		theHash.Add ("Brad", GetValue("Brad", "1"));
+		theHash.Add ("Jake", GetValue("Jake", "4"));
+		theHash.Add ("Steve", GetValue("Steve", "3"));
+		theHash.Add ("Kayla", GetValue("Kayla", "2"));
+		theHash.Add ("Dennis", GetValue("Dennis", "1"));
+		theHash.Add ("Taylor", GetValue("Taylor", "2"));
+		theHash.Add ("Mike", GetValue("Mike", "4"));
+		theHash.Add ("Doug", GetValue("Doug", "3"));
 	
 	}
 
@@ -54,9 +67,9 @@ public class hashMap : MonoBehaviour {
 		List<string> valueOfName;
 		Dictionary<string, List<string>> newHash =  new Dictionary<string, List<string>>();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 8; i++) {
 
-			name = kList.ElementAt ((int)(Random.Range(0, 11)));
+			name = kList.ElementAt ((int)(Random.Range(0, theHash.Count())));
 			valueOfName = theHash [name];
 			newHash.Add (name, valueOfName);
 			theHash.Remove (name);
