@@ -6,7 +6,8 @@ using System.Linq;
 public class hashMap : MonoBehaviour {
 
 	Dictionary<string, List<string>> theHash = new Dictionary<string, List<string>>();
-
+	Dictionary<string, List<string>> firstHash = new Dictionary<string, List<string>>();
+	Dictionary<string, List<string>> secondHash = new Dictionary<string, List<string>>();
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,14 @@ public class hashMap : MonoBehaviour {
 		theHash.Add ("Taylor", GetValue("Taylor", "2"));
 		theHash.Add ("Mike", GetValue("Mike", "4"));
 		theHash.Add ("Doug", GetValue("Doug", "3"));
+
+		//Debug.Log ("theHashLength: " + theHash.Count ());
+
+		firstHash = GetHash();
+		//Debug.Log ("firstHash length: " + firstHash.Count ());
+		secondHash = GetHash();
+		//Debug.Log ("secondHash length: " + secondHash.Count ());
+
 	
 	}
 
@@ -67,11 +76,13 @@ public class hashMap : MonoBehaviour {
 		List<string> valueOfName;
 		Dictionary<string, List<string>> newHash =  new Dictionary<string, List<string>>();
 
-		for (int i = 0; i < 8; i++) {
+		while(newHash.Count() != 8) {
 
 			name = kList.ElementAt ((int)(Random.Range(0, theHash.Count())));
-			valueOfName = theHash [name];
-			newHash.Add (name, valueOfName);
+			//Debug.Log ("name: " + name);
+			theHash.TryGetValue (name, out valueOfName);
+			//Debug.Log ("valueOfName: " + valueOfName);
+			newHash[name] = valueOfName;
 			theHash.Remove (name);
 		}
 
