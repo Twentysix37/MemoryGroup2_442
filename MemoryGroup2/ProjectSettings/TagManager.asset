@@ -41,6 +41,9 @@ TagManager:
   - name: BackGround
     uniqueID: 2287229327
     locked: 0
+  - name: ForeGround
+    uniqueID: 847763127
+    locked: 0
   - name: EnemyEntities
     uniqueID: 2050347765
     locked: 0
