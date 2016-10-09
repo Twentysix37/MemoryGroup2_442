@@ -1,0 +1,18 @@
+date: September 30, 2016
+meeting_type: group
+attendance: [<ronyparm>, <joelhigh>]
+absent: [<ambehr>]
+excused_absences: [
+  {ubit: <ambehr>, didnt think meeting was going to happen and had already made a different commitment}
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: HashMap still having errors}
+  {ubit: <ronyparm>, progress: }
+  {ubit: <joelhigh>, progress: working on code for selection buttons }
+  ]
+issues: [ 
+]
+Notes:  | 
+  Still need the HashMap to work
+  Went over how we would like to be able to combing selection and combat scenes together
+  
