@@ -6,7 +6,7 @@ excused_absences: [
   ]
 task_progress:
   {ubit: <ambehr>, progress: HashMap not error free but is not populating correctly}
-  {ubit: <ronyparm>, progress: }
+  {ubit: <ronyparm>, progress: Worked on the selection phase}
   {ubit: <joelhigh>, progress:panel appearence/button selection }
   ]
 issues: [ 

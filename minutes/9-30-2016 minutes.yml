@@ -7,12 +7,11 @@ excused_absences: [
   ]
 task_progress:
   {ubit: <ambehr>, progress: HashMap still having errors}
-  {ubit: <ronyparm>, progress: }
+  {ubit: <ronyparm>, progress: How to make buttons using a script }
   {ubit: <joelhigh>, progress: working on code for selection buttons }
   ]
 issues: [ 
 ]
 Notes:  | 
-  Still need the HashMap to work
-  Went over how we would like to be able to combing selection and combat scenes together
+  Went over what still needs to get done for this sprint
   

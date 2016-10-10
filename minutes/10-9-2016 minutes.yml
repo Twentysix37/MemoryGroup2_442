@@ -1,0 +1,17 @@
+date: October 28, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ 
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: Finished HashMap for this sprint}
+  {ubit: <ronyparm>, progress: Finsihed selection scene for this sprint}
+  {ubit: <joelhigh>, progress: Finished combat scene for this sprint}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Finished up the project so we can submit.
+  Resolved the issues on Github
+  
