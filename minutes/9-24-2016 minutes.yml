@@ -1,0 +1,17 @@
+date: September 24, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ 
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: started work on hashmap script}
+  {ubit: <ronyparm>, progress: started making progress on the selection scene}
+  {ubit: <joelhigh>, progress: started work on the combat scene}
+  ]
+issues: [None
+]
+Notes:  | 
+  Talked about how we want the hashmap to work
+  Decided to keep the hashmap static for this Sprint
+  
