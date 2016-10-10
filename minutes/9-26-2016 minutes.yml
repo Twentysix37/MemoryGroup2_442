@@ -1,0 +1,17 @@
+date: September 26, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ 
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: hashmap script is nearly complete}
+  {ubit: <ronyparm>, progress: selection scene is complete and just waiting on hashmap script}
+  {ubit: <joelhigh>, progress: combat scene is coming along}
+  ]
+issues: [Hashmap script was having problem because of random in unity
+]
+Notes:  | 
+  Hope to have hashmap script done by ta meeting Wednesday.
+  So that we can implement it into selection scene. 
+  

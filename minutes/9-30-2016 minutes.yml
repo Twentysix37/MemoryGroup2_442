@@ -1,0 +1,17 @@
+date: September 30, 2016
+meeting_type: group
+attendance: [<ronyparm>, <joelhigh>]
+absent: [<ambehr>]
+excused_absences: [
+  {ubit: <ambehr>, didnt think meeting was going to happen and had already made a different commitment}
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: HashMap still having errors}
+  {ubit: <ronyparm>, progress: How to make buttons using a script }
+  {ubit: <joelhigh>, progress: working on code for selection buttons }
+  ]
+issues: [ 
+]
+Notes:  | 
+  Went over what still needs to get done for this sprint
+  

@@ -1,0 +1,17 @@
+date: September 28, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ 
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: HashMap script having problems in it and trying to fix}
+  {ubit: <ronyparm>, progress: Added some extra features to selection screne}
+  {ubit: <joelhigh>, progress: Trying to figure out how to make entities disappear after battle}
+  ]
+issues: [Ta Mike said he would like us to push our code more often as we were just commiting 
+]
+Notes:  | 
+  Still need the HashMap to work
+  Went over how we would like to be able to combing selection and combat scenes together
+  
