@@ -178,16 +178,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResultText: {fileID: 457864867}
   PlayerValue: 0
-  Player: {fileID: 105414845}
-  Enemy: {fileID: 353740638}
+  EnemyValue: 0
+  Player: {fileID: 105414844}
+  Enemy: {fileID: 353740637}
 --- !u!1 &105414844 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013967019614, guid: 3a1d1bccaefe9fa4ab8195603ebcabda,
-    type: 2}
-  m_PrefabInternal: {fileID: 1432970811}
---- !u!212 &105414845 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212000014158015204, guid: 3a1d1bccaefe9fa4ab8195603ebcabda,
     type: 2}
   m_PrefabInternal: {fileID: 1432970811}
 --- !u!95 &105414846
@@ -210,11 +206,6 @@ Animator:
 --- !u!1 &353740637 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011040970518, guid: b277c0222044d8a418f7c372848506bf,
-    type: 2}
-  m_PrefabInternal: {fileID: 1023560843}
---- !u!212 &353740638 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212000012979190596, guid: b277c0222044d8a418f7c372848506bf,
     type: 2}
   m_PrefabInternal: {fileID: 1023560843}
 --- !u!95 &353740639

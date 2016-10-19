@@ -5,18 +5,26 @@ using System.Collections;
 public class Combat : MonoBehaviour {
 	public Text ResultText;
 	public int PlayerValue;
+	public int EnemyValue;
 	Image backgroundSprite;
-	public SpriteRenderer Player;
-	public SpriteRenderer Enemy;
+	public GameObject Player;
+	//public SpriteRenderer Player;
+	public GameObject Enemy;
+	//public SpriteRenderer Enemy;
+	SpriteRenderer playerSpriteRenderer;
+	SpriteRenderer enemySpriteRenderer;
 	Animator playerani;
 	Animator enemyani;
 
 	public void CombatResult (int PlayerValue){
+		EnemyValue = 0;
+
 		//enemyani.SetBool ("Ani", false);
 		//playerani.SetBool ("Ani", false);
 		backgroundSprite = ResultText.GetComponentInParent<Image> ();
-		if (PlayerValue > 0) {//EnemyValue) {
-			playerani = Player.GetComponent<Animator> ();
+		if (PlayerValue > EnemyValue) {//EnemyValue) {
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
 			StartCoroutine( Waiting ("Win!"));
@@ -24,7 +32,7 @@ public class Combat : MonoBehaviour {
 			//backgroundSprite.enabled = false;
 
 
-		} else if (PlayerValue < 0) { //EnemyValue) {
+		} else if (PlayerValue < EnemyValue) { //EnemyValue) {
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
 
@@ -34,7 +42,10 @@ public class Combat : MonoBehaviour {
 
 
 		} else {
-			playerani = Player.GetComponent<Animator> ();
+			Player.SetActive(false);
+			Player = GameObject.Instantiate (Resources.Load ("Prefab/RedKnight", typeof(GameObject))) as GameObject;
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
 			enemyani = Enemy.GetComponent<Animator> ();
