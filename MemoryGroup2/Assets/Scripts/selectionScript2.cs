@@ -3,12 +3,16 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class selectionScript2 : MonoBehaviour {
 
 	public Button characterOne;
 	public Button characterTwo;
 	public Button characterThree;
+	public Button characterFour;
+	public Button characterFive;
+	public Button characterSix;
 	public Canvas selectionScene;
 	public Canvas valueCanvas;
 	public Dictionary<string, List<string>> theHash;
@@ -18,6 +22,9 @@ public class selectionScript2 : MonoBehaviour {
 	public string characterOneString;
 	public string characterTwoString;
 	public string characterThreeString;
+	public string characterFourString;
+	public string characterFiveString;
+	public string characterSixString;
 	public string value4Map;
 	public Text valueOne;
 	public Text valueTwo;
@@ -32,8 +39,10 @@ public class selectionScript2 : MonoBehaviour {
 	string currentCharacter;
 	public Text playeroneCharacter1;
 	public Text playeroneCharacter2;
+	public Text playeroneCharacter3;
 	public Text computerCharacter1;
 	public Text computerCharacter2;
+	public Text computerCharacter3;
 	public int CharacterPanelcount;
 
 	// Use this for initialization
@@ -41,6 +50,9 @@ public class selectionScript2 : MonoBehaviour {
 		characterOne = characterOne.GetComponent<Button> ();
 		characterTwo = characterTwo.GetComponent<Button> ();
 		characterThree = characterThree.GetComponent<Button> ();
+		characterFour = characterFour.GetComponent<Button> ();
+		characterFive = characterFive.GetComponent<Button> ();
+		characterSix = characterSix.GetComponent<Button> ();
 		selectionScene = selectionScene.GetComponent<Canvas> ();
 		valueCanvas = valueCanvas.GetComponent<Canvas> ();
 		theHash = new Dictionary<string, List<string>>();
@@ -61,12 +73,16 @@ public class selectionScript2 : MonoBehaviour {
 		theHash.Add("Frank", generateValue());
 		theHash.Add("Joe", generateValue());
 		theHash.Add("Billybob", generateValue());
+		theHash.Add ("Mike", generateValue ());
+		theHash.Add ("Jimmy", generateValue ());
+		theHash.Add ("Rony", generateValue ());
+
 	}
 
 	public List<string> generateValue(){//generates value for static map
 		List<string> generator = new List<string> ();
-		generator.Add ("1");
-		generator.Add ("2");
+		generator.Add (""+Random.Range(1,254));
+		generator.Add (""+Random.Range(1,254));
 		return generator;
 	}
 
@@ -84,7 +100,16 @@ public class selectionScript2 : MonoBehaviour {
 			} else if (count == 2) {
 				characterThree.GetComponentInChildren<Text> ().text = pair;
 				characterThreeString = pair;
-			}
+			} else if (count == 3) {
+				characterFour.GetComponentInChildren<Text> ().text = pair;
+				characterFourString = pair;
+			} else if (count == 4) {
+				characterFive.GetComponentInChildren<Text> ().text = pair;
+				characterFiveString = pair;
+			}  else if (count == 5) {
+				characterSix.GetComponentInChildren<Text> ().text = pair;
+				characterSixString = pair;
+			} 
 			count = count + 1;
 		}
 	}
@@ -146,6 +171,54 @@ public class selectionScript2 : MonoBehaviour {
 
 	}
 
+	public void characterFourPress(){
+		currentCharacter = characterFourString;
+		counter = counter + 1;
+		List<string> valuesfromHash = theHash [characterFourString];
+		valueText (valuesfromHash);
+		if (counter % 2 != 0) {
+			playerDict.Add (characterFourString,"");
+
+		} else {
+			computerDict.Add (characterFourString,"");
+		}
+
+		//change the image to the character name
+		//add the character/value to dictionary depending on the turn
+	}
+
+	public void characterFivePress(){
+		currentCharacter = characterFiveString;
+		counter = counter + 1;
+		List<string> valuesfromHash = theHash [characterFiveString];
+		valueText (valuesfromHash);
+		if (counter % 2 != 0) {
+			playerDict.Add (characterFiveString,"");
+
+		} else {
+			computerDict.Add (characterFiveString,"");
+		}
+
+		//change the image to the character name
+		//add the character/value to dictionary depending on the turn
+	}
+
+	public void characterSixPress(){
+		currentCharacter = characterSixString;
+		counter = counter + 1;
+		List<string> valuesfromHash = theHash [characterSixString];
+		valueText (valuesfromHash);
+		if (counter % 2 != 0) {
+			playerDict.Add (characterSixString,"");
+
+		} else {
+			computerDict.Add (characterSixString,"");
+		}
+
+		//change the image to the character name
+		//add the character/value to dictionary depending on the turn
+	}
+
 
 
 	public void valueText(List<string> values){
@@ -154,29 +227,32 @@ public class selectionScript2 : MonoBehaviour {
 		foreach (string str in values) {//value button text is made by looping threw the list of the dictionary
 			if (valueCounter == 0) {
 				valueOne.text = str;
+				value4One = str;
 			} else if (valueCounter == 1) {
 				valueTwo.text = str;
+				value4Two = str;
 			}
 			valueCounter = valueCounter + 1;
 		}
 	}
-
-
-
 	public void valueOnePress(){
 		valueCanvas.enabled = false;
-		value4One = "1";
-		playerDict [currentCharacter] = value4One;
+		if (counter % 2 == 0) {
+			playerDict [currentCharacter] = value4One;
+		} else {
+			computerDict [currentCharacter] = value4One;
+		}
 		characterUpdate ();
-
-
 		//store into a map
 	}
 
 	public void valueTwoPress(){
 		valueCanvas.enabled = false;
-		value4One = "2";
-		playerDict [currentCharacter] = value4One;
+		if (counter % 2 == 0) {
+			playerDict [currentCharacter] = value4Two;
+		}else {
+			computerDict [currentCharacter] = value4Two;
+		}
 		characterUpdate ();
 		//store into a map
 	}
@@ -190,9 +266,22 @@ public class selectionScript2 : MonoBehaviour {
 			playeroneCharacter2.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 3) {
 			computerCharacter2.text = currentCharacter + " Value: " + playerDict [currentCharacter];
+		} else if (CharacterPanelcount == 4) {
+			playeroneCharacter3.text = currentCharacter + " Value: " + playerDict [currentCharacter];
+		} else if (CharacterPanelcount == 5) {
+			computerCharacter3.text = currentCharacter + " Value: " + playerDict [currentCharacter];
+			SceneManager.LoadScene ("Game"); //Last character Choosen
 		}
 		CharacterPanelcount = CharacterPanelcount + 1;
 		turnText ();
+	}
+
+	public Dictionary<string, string> dictionaryCPU(){
+		return computerDict;
+	}
+
+	public Dictionary<string, string> dictionaryP1(){
+		return playerDict;
 	}
 
 
