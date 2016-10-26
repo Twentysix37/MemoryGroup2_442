@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class selectionScript2 : MonoBehaviour {
 
+	public Button Exit;
 	public Button characterOne;
 	public Button characterTwo;
 	public Button characterThree;
@@ -44,9 +45,12 @@ public class selectionScript2 : MonoBehaviour {
 	public Text computerCharacter2;
 	public Text computerCharacter3;
 	public int CharacterPanelcount;
+	public Button startButton;
+	public bool turn;
 
 	// Use this for initialization
 	void Start () {
+		startButton = startButton.GetComponent<Button> ();
 		characterOne = characterOne.GetComponent<Button> ();
 		characterTwo = characterTwo.GetComponent<Button> ();
 		characterThree = characterThree.GetComponent<Button> ();
@@ -59,6 +63,7 @@ public class selectionScript2 : MonoBehaviour {
 		computerDict = new Dictionary<string, string>();
 		playerDict = new Dictionary<string, string>();
 		valueCanvas.enabled = false;
+		startButton.enabled = false;
 		characterOneString = "";
 		characterTwoString = "";
 		characterThreeString = "";
@@ -66,7 +71,15 @@ public class selectionScript2 : MonoBehaviour {
 		playerTwoCounter = 0;
 		buttonText ();
 		counter = 0;
+		turn = true;
 
+	}
+
+	public void exitMain(){
+		SceneManager.LoadScene ("Title");
+	}
+	public void startCombat(){
+		SceneManager.LoadScene ("Game"); //Last character Choosen
 	}
 
 	public void generateMap(){//generates dictionary for starting selection phase
@@ -116,8 +129,10 @@ public class selectionScript2 : MonoBehaviour {
 	public void turnText(){
 		turnPlayer.enabled = true;
 		if (counter % 2 == 0) {
+			turn = true;
 			turnPlayer.text = "Player One's Turn";
 		} else {
+			turn = false;
 			turnPlayer.text = "Computers Turn";
 		}
 	}
@@ -178,11 +193,9 @@ public class selectionScript2 : MonoBehaviour {
 		valueText (valuesfromHash);
 		if (counter % 2 != 0) {
 			playerDict.Add (characterFourString,"");
-
 		} else {
 			computerDict.Add (characterFourString,"");
 		}
-
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -218,9 +231,7 @@ public class selectionScript2 : MonoBehaviour {
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
-
-
-
+		
 	public void valueText(List<string> values){
 		int valueCounter = 0;
 		valueCanvas.enabled = true;
@@ -235,11 +246,12 @@ public class selectionScript2 : MonoBehaviour {
 			valueCounter = valueCounter + 1;
 		}
 	}
+
 	public void valueOnePress(){
 		valueCanvas.enabled = false;
-		if (counter % 2 == 0) {
+		if (turn == true) {
 			playerDict [currentCharacter] = value4One;
-		} else {
+		} else if (turn == false) {
 			computerDict [currentCharacter] = value4One;
 		}
 		characterUpdate ();
@@ -248,9 +260,9 @@ public class selectionScript2 : MonoBehaviour {
 
 	public void valueTwoPress(){
 		valueCanvas.enabled = false;
-		if (counter % 2 == 0) {
+		if (turn == true) {
 			playerDict [currentCharacter] = value4Two;
-		}else {
+		} else if (turn == false) {
 			computerDict [currentCharacter] = value4Two;
 		}
 		characterUpdate ();
@@ -261,16 +273,16 @@ public class selectionScript2 : MonoBehaviour {
 		if (CharacterPanelcount == 0) {
 			playeroneCharacter1.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 1) {
-			computerCharacter1.text = currentCharacter + " Value: " + playerDict [currentCharacter];
+			computerCharacter1.text = currentCharacter + " Value: " + computerDict [currentCharacter];
 		} else if (CharacterPanelcount == 2) {
 			playeroneCharacter2.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 3) {
-			computerCharacter2.text = currentCharacter + " Value: " + playerDict [currentCharacter];
+			computerCharacter2.text = currentCharacter + " Value: " + computerDict [currentCharacter];
 		} else if (CharacterPanelcount == 4) {
 			playeroneCharacter3.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 5) {
-			computerCharacter3.text = currentCharacter + " Value: " + playerDict [currentCharacter];
-			SceneManager.LoadScene ("Game"); //Last character Choosen
+			computerCharacter3.text = currentCharacter + " Value: " + computerDict [currentCharacter];
+			startButton.enabled = true;
 		}
 		CharacterPanelcount = CharacterPanelcount + 1;
 		turnText ();
