@@ -17,7 +17,8 @@ public class reviewScript : MonoBehaviour {
 	public Queue compChoices = new Queue();
 	public Queue results = new Queue();
 	public int count;
-	public Button back;
+	public Button Back;
+	public Button Main;
 
 
 	// Use this for initialization
@@ -25,9 +26,11 @@ public class reviewScript : MonoBehaviour {
 
 		generateQueues();
 
-		back = back.GetComponent<Button> ();
+		Back = GetComponent<Button> ();
+		Main = GetComponent<Button> ();
+		//battleResult.text = "string";
 
-		//setText ();
+		setText ();
 	
 	}
 	
@@ -52,12 +55,8 @@ public class reviewScript : MonoBehaviour {
 		results.Enqueue ("Lose");
 	}
 
-	void setText (){
+	public void setText (){
 
-		battleResult.enabled = true;
-		User.enabled = true;
-		Computer.enabled = true;
-		Outcome.enabled = true;
 		count = 1;
 
 		while (count != 5) {
@@ -67,15 +66,17 @@ public class reviewScript : MonoBehaviour {
 			compChoice = compChoices.Dequeue ().ToString ();
 			result = results.Dequeue ().ToString ();
 			battleNum = count;
+			string strOne = "Battle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 
 			if (count == 1) {
-				battleResult.text = "Battle: " + battleNum + ": User: " + userChoice + ": Computer: " + compChoice + ": Result: " + result;
+				//battleResult.text = strOne;
+				battleResult.text = strOne;
 			} else if (count == 2) {
-				User.text = "Battle: " + battleNum + ": User: " + userChoice + ": Computer: " + compChoice + ": Result: " + result;
+				User.text = "Battle: " + battleNum + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 			} else if (count == 3) {
-				Computer.text = "Battle: " + battleNum + ": User: " + userChoice + ": Computer: " + compChoice + ": Result: " + result;
+				Computer.text = "Battle: " + battleNum + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 			} else if (count == 4) {
-				Outcome.text = "Battle: " + battleNum + ": User: " + userChoice + ": Computer: " + compChoice + ": Result: " + result;
+				Outcome.text = "Battle: " + battleNum + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 			}
 
 			count = count + 1;
@@ -83,9 +84,14 @@ public class reviewScript : MonoBehaviour {
 		}
 	}
 
-	public void loadScene(){
+	public void loadLastScene(){
 
 		SceneManager.LoadScene("Game");
 
+	}
+
+	public void loadMain(){
+
+		SceneManager.LoadScene ("Title");
 	}
 }

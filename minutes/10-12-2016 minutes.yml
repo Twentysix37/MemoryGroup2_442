@@ -1,0 +1,19 @@
+date: October 12, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [ 
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: None}
+  {ubit: <ronyparm>, progress: None}
+  {ubit: <joelhigh>, progress: None}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Discussed what we want done for this sprint.
+  Rony will do selection, there will be more characters and values.
+  Joel will do battle, figure out who won the battle and make more characters.
+  Alex will do gameflow, had back and menu buttons and create a review scene.  
+  

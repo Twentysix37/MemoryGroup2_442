@@ -1,0 +1,19 @@
+date: October 19, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>]
+absent: [<joelhigh>]
+excused_absences: [
+  {ubit: <joelhigh>, : reason:  plans with family}
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: started getting some results to post}
+  {ubit: <ronyparm>, progress: made more characters and working on more random values}
+  {ubit: <joelhigh>, progress: made a few more animated characters for battle}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Mike checked with our progress so far.
+  Made our issues on git since we forgot to last time.
+  Clarified that back button goes back to start of last scene.
+  
