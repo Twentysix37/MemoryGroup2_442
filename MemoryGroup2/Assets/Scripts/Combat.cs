@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class Combat : MonoBehaviour {
 	public Text ResultText;
@@ -19,9 +21,18 @@ public class Combat : MonoBehaviour {
 	SpriteRenderer enemySpriteRenderer;
 	Animator playerani;
 	Animator enemyani;
+	public Button Back;
 	List<string> Names = new List<string>();
 
 	void Start(){
+//		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas");
+//		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
+//		List<string> playerNames = new List<string>();
+//		var keyCollection = selScript.playerDict.Keys;
+//		foreach (var key in keyCollection) {
+//			playerNames.Add (key);
+//		}
+
 		Names.Add ("John");
 		Names.Add ("Jacob");
 		Names.Add ("Smith");
@@ -85,5 +96,11 @@ public class Combat : MonoBehaviour {
 		enemyani.SetBool ("Ani", false);
 
 		}
+
+	public void loadLastScene(){
+
+		SceneManager.LoadScene("Game");
+
+	}
 	}
 
