@@ -76,8 +76,9 @@ public class menuScript : MonoBehaviour {
 	}
 
 	public void Startlevel(){
-		Application.LoadLevel ("Selection V2");
+		//Application.LoadLevel ("Selection V3");
 		//SceneManager.LoadScene ("Selection V2");
+		SceneManager.LoadScene ("Selection V3");
 	}
 
 	public void ExitGame(){
