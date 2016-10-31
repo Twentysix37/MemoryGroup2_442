@@ -48,7 +48,7 @@ public class selectionScript2 : MonoBehaviour {
 	public Button startButton;
 	public bool turn;
 
-	// Use this for initialization
+
 	void Start () {
 		startButton = startButton.GetComponent<Button> ();
 		characterOne = characterOne.GetComponent<Button> ();
@@ -74,6 +74,8 @@ public class selectionScript2 : MonoBehaviour {
 		turn = true;
 
 	}
+
+
 
 	public void exitMain(){
 		SceneManager.LoadScene ("Title");
