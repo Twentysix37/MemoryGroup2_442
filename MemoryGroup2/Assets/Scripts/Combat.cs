@@ -103,7 +103,7 @@ public class Combat : MonoBehaviour {
 
 		}
 		if (counter == 3) {
-			loadNextScene ();
+			StartCoroutine(waitNextScene ());
 		}
 	}
 
@@ -116,10 +116,14 @@ public class Combat : MonoBehaviour {
 		enemyani.SetBool ("Ani", false);
 
 		}
+	IEnumerator waitNextScene (){
+		yield return new WaitForSecondsRealtime(2.5f);
+		loadNextScene ();
+	}
 
 	public void loadLastScene(){
 
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Selection V3");
 
 	}
 
