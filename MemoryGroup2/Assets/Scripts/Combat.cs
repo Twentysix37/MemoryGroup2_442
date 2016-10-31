@@ -44,6 +44,7 @@ public class Combat : MonoBehaviour {
 	public void CombatResult (int PlayerValue){
 		
 		Player.SetActive(false);
+		Enemy.SetActive (false);
 		EnemyValue = 0;
 
 		//enemyani.SetBool ("Ani", false);
@@ -56,12 +57,22 @@ public class Combat : MonoBehaviour {
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
+			enemyani = Enemy.GetComponent<Animator> ();
+
 			StartCoroutine( Waiting ("Win!"));
 
 			//backgroundSprite.enabled = false;
 
 
 		} else if (PlayerValue < EnemyValue) { //EnemyValue) {
+			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
+
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttackBlack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
 
@@ -77,6 +88,8 @@ public class Combat : MonoBehaviour {
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
 
