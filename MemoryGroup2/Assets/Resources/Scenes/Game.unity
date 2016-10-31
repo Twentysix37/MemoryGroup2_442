@@ -179,11 +179,12 @@ MonoBehaviour:
   ResultText: {fileID: 457864867}
   PlayerValue: 0
   EnemyValue: 0
-  Button1: {fileID: 0}
-  Button2: {fileID: 0}
-  Button3: {fileID: 0}
+  Button1: {fileID: 1878363589}
+  Button2: {fileID: 633607435}
+  Button3: {fileID: 1250817950}
   Player: {fileID: 105414844}
   Enemy: {fileID: 353740637}
+  Back: {fileID: 1697042947}
 --- !u!1 &105414844 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013967019614, guid: 3a1d1bccaefe9fa4ab8195603ebcabda,
@@ -369,6 +370,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000010142853774, guid: de52d9f888880ad49961d49ba47b385a,
     type: 2}
   m_PrefabInternal: {fileID: 1141750863}
+--- !u!1 &633607435 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013758837798, guid: de52d9f888880ad49961d49ba47b385a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1902221857}
 --- !u!4 &834094257 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010348767048, guid: 3a1d1bccaefe9fa4ab8195603ebcabda,
@@ -650,6 +656,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1185685857}
+--- !u!1 &1250817950 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013758837798, guid: de52d9f888880ad49961d49ba47b385a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141750863}
 --- !u!4 &1252348496 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013558523350, guid: b277c0222044d8a418f7c372848506bf,
@@ -959,6 +970,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697042945}
+--- !u!1 &1878363589 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013758837798, guid: de52d9f888880ad49961d49ba47b385a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2142373160}
 --- !u!1001 &1902221857
 Prefab:
   m_ObjectHideFlags: 0

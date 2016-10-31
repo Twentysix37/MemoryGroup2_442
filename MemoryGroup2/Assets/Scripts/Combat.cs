@@ -25,17 +25,17 @@ public class Combat : MonoBehaviour {
 	List<string> Names = new List<string>();
 
 	void Start(){
-//		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas");
-//		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
-//		List<string> playerNames = new List<string>();
-//		var keyCollection = selScript.playerDict.Keys;
-//		foreach (var key in keyCollection) {
-//			playerNames.Add (key);
-//		}
+		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
+		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
+		List<string> playerNames = new List<string>();
+		var keyCollection = selScript.playerDict.Keys;
+		foreach (var key in keyCollection) {
+			playerNames.Add (key);
+		}
 
-		Names.Add ("John");
-		Names.Add ("Jacob");
-		Names.Add ("Smith");
+		Names.Add (playerNames[0]);
+		Names.Add (playerNames[1]);
+		Names.Add (playerNames[2]);
 		Button1.GetComponentInChildren<Text>().text = Names[0];
 		Button2.GetComponentInChildren<Text>().text = Names[1];
 		Button3.GetComponentInChildren<Text>().text = Names[2];

@@ -16,7 +16,7 @@ public class selectionScript2 : MonoBehaviour {
 	public Button characterSix;
 	public Canvas selectionScene;
 	public Canvas valueCanvas;
-	public Dictionary<string, List<string>> theHash;
+	public static Dictionary<string, List<string>> theHash;
 	public Dictionary<string, string> computerDict;
 	public Dictionary<string, string> playerDict;
 	public Image spawnCharacter;
@@ -75,7 +75,9 @@ public class selectionScript2 : MonoBehaviour {
 
 	}
 
-
+	public void Awake(){
+		DontDestroyOnLoad (gameObject);
+	}
 
 	public void exitMain(){
 		SceneManager.LoadScene ("Title");
