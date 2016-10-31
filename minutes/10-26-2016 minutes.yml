@@ -1,0 +1,17 @@
+date: October 26, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: back button works and just need main menu button}
+  {ubit: <ronyparm>, progress: nearly finished task and just fine tuning it}
+  {ubit: <joelhigh>, progress: add more animations during the battle}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Mike made sure that our project was going to be complete for this sprint.
+  Said that main menu button is only needed for last scene.
+  

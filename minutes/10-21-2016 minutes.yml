@@ -1,0 +1,17 @@
+date: October 21, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: finished results scene, working on back buttons}
+  {ubit: <ronyparm>, progress: can now select more values, for each character}
+  {ubit: <joelhigh>, progress: was able to create more animations}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Made sure everyone was getting everything done for sprint
+  Working on getting each scene to come together
+  
