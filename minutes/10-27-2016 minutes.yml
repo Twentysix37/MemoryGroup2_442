@@ -1,0 +1,18 @@
+date: October 27, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: main button works and fixed all exceptions}
+  {ubit: <ronyparm>, progress: completely finished task}
+  {ubit: <joelhigh>, progress: task nearly complete for the sprint}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Made sure our code worked together.
+  Fixed an NullReferenceException in the Review Scene
+  Project is nearly done for this sprint.
+  

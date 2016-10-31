@@ -1,30 +1,82 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class Combat : MonoBehaviour {
 	public Text ResultText;
 	public int PlayerValue;
+	public int EnemyValue;
+	public GameObject Button1;
+	public GameObject Button2;
+	public GameObject Button3;
 	Image backgroundSprite;
-	public SpriteRenderer Player;
-	public SpriteRenderer Enemy;
+	public GameObject Player;
+	//public SpriteRenderer Player;
+	public GameObject Enemy;
+	//public SpriteRenderer Enemy;
+	SpriteRenderer playerSpriteRenderer;
+	SpriteRenderer enemySpriteRenderer;
 	Animator playerani;
 	Animator enemyani;
+	public Button Back;
+	int counter = 0;
+	List<string> Names = new List<string>();
+
+	void Start(){
+		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
+		selectionCanvas.SetActive(false);
+		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
+		List<string> playerNames = new List<string>();
+		var keyCollection = selScript.playerDict.Keys;
+		foreach (var key in keyCollection) {
+			playerNames.Add (key);
+		}
+
+		Names.Add (playerNames[0]);
+		Names.Add (playerNames[1]);
+		Names.Add (playerNames[2]);
+		Button1.GetComponentInChildren<Text>().text = Names[0];
+		Button2.GetComponentInChildren<Text>().text = Names[1];
+		Button3.GetComponentInChildren<Text>().text = Names[2];
+	}
 
 	public void CombatResult (int PlayerValue){
+		
+		Player.SetActive(false);
+		Enemy.SetActive (false);
+		EnemyValue = 0;
+
 		//enemyani.SetBool ("Ani", false);
 		//playerani.SetBool ("Ani", false);
 		backgroundSprite = ResultText.GetComponentInParent<Image> ();
-		if (PlayerValue > 0) {//EnemyValue) {
-			playerani = Player.GetComponent<Animator> ();
+		if (PlayerValue > EnemyValue) {//EnemyValue) {
+			counter++;
+			
+			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
+
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
+			enemyani = Enemy.GetComponent<Animator> ();
 
 			StartCoroutine( Waiting ("Win!"));
 
 			//backgroundSprite.enabled = false;
 
 
-		} else if (PlayerValue < 0) { //EnemyValue) {
+		} else if (PlayerValue < EnemyValue) { //EnemyValue) {
+			counter++;
+			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
+
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttackBlack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
 
@@ -34,9 +86,14 @@ public class Combat : MonoBehaviour {
 
 
 		} else {
-			playerani = Player.GetComponent<Animator> ();
+			counter++;
+			Player = GameObject.Instantiate (Resources.Load ("Prefab/RedKnight", typeof(GameObject))) as GameObject;
+			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
+			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
+			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
 
@@ -44,6 +101,9 @@ public class Combat : MonoBehaviour {
 			//backgroundSprite.enabled = false;
 
 
+		}
+		if (counter == 3) {
+			StartCoroutine(waitNextScene ());
 		}
 	}
 
@@ -56,5 +116,22 @@ public class Combat : MonoBehaviour {
 		enemyani.SetBool ("Ani", false);
 
 		}
+	IEnumerator waitNextScene (){
+		yield return new WaitForSecondsRealtime(2.5f);
+		loadNextScene ();
+	}
+
+	public void loadLastScene(){
+
+		SceneManager.LoadScene("Selection V3");
+
+	}
+
+	public void loadNextScene(){
+
+		SceneManager.LoadScene("Review");
+
+	}
+
 	}
 
