@@ -76,7 +76,7 @@ public class selectionScript2 : MonoBehaviour {
 	}
 
 	public void Awake(){
-		DontDestroyOnLoad (gameObject);
+		DontDestroyOnLoad (this);
 	}
 
 	public void exitMain(){

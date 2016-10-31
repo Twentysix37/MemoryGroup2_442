@@ -22,10 +22,12 @@ public class Combat : MonoBehaviour {
 	Animator playerani;
 	Animator enemyani;
 	public Button Back;
+	int counter = 0;
 	List<string> Names = new List<string>();
 
 	void Start(){
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
+		selectionCanvas.SetActive(false);
 		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
 		List<string> playerNames = new List<string>();
 		var keyCollection = selScript.playerDict.Keys;
@@ -51,6 +53,7 @@ public class Combat : MonoBehaviour {
 		//playerani.SetBool ("Ani", false);
 		backgroundSprite = ResultText.GetComponentInParent<Image> ();
 		if (PlayerValue > EnemyValue) {//EnemyValue) {
+			counter++;
 			
 			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
@@ -67,6 +70,7 @@ public class Combat : MonoBehaviour {
 
 
 		} else if (PlayerValue < EnemyValue) { //EnemyValue) {
+			counter++;
 			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
@@ -82,7 +86,7 @@ public class Combat : MonoBehaviour {
 
 
 		} else {
-			
+			counter++;
 			Player = GameObject.Instantiate (Resources.Load ("Prefab/RedKnight", typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
@@ -97,6 +101,9 @@ public class Combat : MonoBehaviour {
 			//backgroundSprite.enabled = false;
 
 
+		}
+		if (counter == 3) {
+			loadNextScene ();
 		}
 	}
 
@@ -115,5 +122,12 @@ public class Combat : MonoBehaviour {
 		SceneManager.LoadScene("Game");
 
 	}
+
+	public void loadNextScene(){
+
+		SceneManager.LoadScene("Review");
+
+	}
+
 	}
 
