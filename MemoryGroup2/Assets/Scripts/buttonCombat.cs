@@ -140,32 +140,19 @@ public class buttonCombat : MonoBehaviour {
 	int disableCount=0;
 	public void disableButton(){
 		if (disableCount % 2 == 0) {
-			playerOneValue.text = "";
-			playerTwoValue.text = "";
-			playerThreeValue.text = "";
-			computerOneValue.text = "";
-			computerTwoValue.text = "";
-			computerThreeValue.text = "";
+			playerOneValue.text = "-";
+			playerTwoValue.text = "-";
+			playerThreeValue.text = "-";
+			computerOneValue.text = "-";
+			computerTwoValue.text = "-";
+			computerThreeValue.text = "-";
 		} else {
-			if (playerOne.text != "-") {
 				playerOneValue.text = testDict [playerOneString];
-			}
-			if (playerTwo.text != "-") {
 				playerTwoValue.text = testDict [playerTwoString];
-			} 
-			if (playerThreeValue.text != "-") {
 				playerThreeValue.text = testDict [playerThreeString];
-			}
-			if (computerOneValue.text != "-") {
 				computerOneValue.text = testDict [computerOneString];
-			}
-			if (computerTwoValue.text != "-") {
 				computerTwoValue.text = testDict [computerTwoString];
-			}
-			if (computerThreeValue.text != "-") {
 				computerThreeValue.text = testDict [computerThreeString];
-			}
-
 		}
 		disableCount = disableCount + 1;
 	}

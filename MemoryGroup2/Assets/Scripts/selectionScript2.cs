@@ -98,8 +98,8 @@ public class selectionScript2 : MonoBehaviour {
 
 	public List<string> generateValue(){//generates value for static map
 		List<string> generator = new List<string> ();
-		generator.Add (""+Random.Range(1,254));
-		generator.Add (""+Random.Range(1,254));
+		generator.Add (""+Random.Range(200,800));
+		generator.Add (""+Random.Range(200,800));
 		return generator;
 	}
 
@@ -151,7 +151,7 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterOneString,"");
 		}
-			
+		characterTwo.enabled = false;
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -167,7 +167,7 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterTwoString,"");
 		}
-
+		characterOne.enabled = false;
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -184,7 +184,7 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterThreeString,"");
 		}
-
+		characterThree.enabled = false;
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -202,6 +202,7 @@ public class selectionScript2 : MonoBehaviour {
 		}
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
+		characterFour.enabled = false;
 	}
 
 	public void characterFivePress(){
@@ -215,7 +216,7 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterFiveString,"");
 		}
-
+		characterFive.enabled = false;
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -231,7 +232,7 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterSixString,"");
 		}
-
+		characterSix.enabled = false;
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
