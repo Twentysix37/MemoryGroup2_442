@@ -48,12 +48,12 @@ public class Combat : MonoBehaviour {
 		}
 
 		var keyEnemyCollection = selScript.computerDict.Keys;
-		foreach (var key in keyCollection) {
+		foreach (var key in keyEnemyCollection) {
 			enemyNames.Add (key);
 		}
 
 		var valueEnemyCollection = selScript.computerDict.Values;
-		foreach (var val in valueCollection) {
+		foreach (var val in valueEnemyCollection) {
 			enemyValues.Add (val);
 		}
 
@@ -85,7 +85,7 @@ public class Combat : MonoBehaviour {
 		//enemyani.SetBool ("Ani", false);
 		//playerani.SetBool ("Ani", false);
 		backgroundSprite = ResultText.GetComponentInParent<Image> ();
-		if ((Values[PlayerValue] + cpuValues[counter]) <= 800) {//EnemyValue) {
+		if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) <= 800) {//EnemyValue) {
 			counter++;
 			
 			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
@@ -102,7 +102,7 @@ public class Combat : MonoBehaviour {
 			//backgroundSprite.enabled = false;
 
 
-		} else if ((Values[PlayerValue] + cpuValues[counter]) >= 1300) { //EnemyValue) {
+		} else if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) >= 1300) { //EnemyValue) {
 			counter++;
 			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
