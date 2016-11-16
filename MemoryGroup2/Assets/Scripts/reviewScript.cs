@@ -9,14 +9,9 @@ public class reviewScript : MonoBehaviour {
 	public Text User;
 	public Text Computer;
 	public Text Outcome;
-	public int battleNum;
-	public string userChoice;
-	public string compChoice;
-	public string result;
 	public Queue userChoices = new Queue();
 	public Queue compChoices = new Queue();
 	public Queue results = new Queue();
-	public int count;
 	public Button Back;
 	public Button Main;
 
@@ -24,13 +19,13 @@ public class reviewScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		generateQueues();
+		//generateQueues();
 
 		Back = GetComponent<Button> ();
 		Main = GetComponent<Button> ();
 		//battleResult.text = "string";
 
-		setText ();
+		setText (5);
 	
 	}
 	
@@ -55,11 +50,17 @@ public class reviewScript : MonoBehaviour {
 		results.Enqueue ("Lose");
 	}
 
-	public void setText (){
+	public void setText (int battles){
+
+		int battleNum;
+		int count;
+		string userChoice;
+		string compChoice;
+		string result;
 
 		count = 1;
 
-		while (count != 5) {
+		while (count < battles) {
 
 
 			userChoice = userChoices.Dequeue ().ToString ();
@@ -68,7 +69,9 @@ public class reviewScript : MonoBehaviour {
 			battleNum = count;
 			string strOne = "Battle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 
-			if (count == 1) {
+			battleResult.text = battleResult.text + "\n" + strOne;
+
+			/*if (count == 1) {
 				//battleResult.text = strOne;
 				battleResult.text = strOne;
 			} else if (count == 2) {
@@ -78,7 +81,7 @@ public class reviewScript : MonoBehaviour {
 			} else if (count == 4) {
 				Outcome.text = "Battle: " + battleNum + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 			}
-
+			*/
 			count = count + 1;
 
 		}
