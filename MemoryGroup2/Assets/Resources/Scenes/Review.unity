@@ -512,11 +512,6 @@ MonoBehaviour:
   User: {fileID: 786153719}
   Computer: {fileID: 2113343597}
   Outcome: {fileID: 1969950164}
-  battleNum: 0
-  userChoice: 
-  compChoice: 
-  result: 
-  count: 0
   Back: {fileID: 2009650527}
   Main: {fileID: 404645245}
 --- !u!1 &1074431514
@@ -614,7 +609,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 500, y: 30}
+  m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110657327
 MonoBehaviour:
