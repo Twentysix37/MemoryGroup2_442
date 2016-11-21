@@ -294,9 +294,14 @@ public class selectionScript2 : MonoBehaviour {
 		} else if (CharacterPanelcount == 5) {
 			computerCharacter3.text = currentCharacter + " Value: " + computerDict [currentCharacter];
 			startButton.enabled = true;
+
+		}
+		turnText ();
+		if (CharacterPanelcount == 5) {
+			turnPlayer.text = "Press Start";
 		}
 		CharacterPanelcount = CharacterPanelcount + 1;
-		turnText ();
+
 	}
 
 	public Dictionary<string, string> dictionaryCPU(){
