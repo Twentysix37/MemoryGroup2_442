@@ -128,6 +128,7 @@ public class Combat : MonoBehaviour {
 	}
 
 	public void buttonOne(){
+		playerButton1.enabled = false;
 		cantClick (playerButton1, playerOneValue);
 		int j = CombatResult (0);
 		if (j==1){//==2) {
@@ -141,6 +142,7 @@ public class Combat : MonoBehaviour {
 
 	}
 	public void buttonTwo(){
+		playerButton2.enabled = false;
 		cantClick (playerButton2, playerTwoValue);
 		int j = CombatResult (1);
 		if (j==1){//==2) {
@@ -153,7 +155,9 @@ public class Combat : MonoBehaviour {
 
 	}
 	public void buttonThree(){
+		playerButton3.enabled = false;
 		cantClick (playerButton3, playerThreeValue);
+
 		int j = CombatResult (2);
 		if (j==1){//==2) {
 			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"death2");
