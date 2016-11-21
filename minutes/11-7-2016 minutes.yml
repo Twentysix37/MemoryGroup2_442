@@ -1,0 +1,17 @@
+date: November 7, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: started work for the buttons to replay and menu}
+  {ubit: <ronyparm>, progress: working on making more characters for battle}
+  {ubit: <joelhigh>, progress: started writing script for the evaluation function}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Everyone has started their task. 
+  Started to talk about integrating scenes and data from each other
+  

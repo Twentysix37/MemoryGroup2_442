@@ -1,0 +1,17 @@
+date: November 16, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: finished up everything, just need to integrate with battle to recieve information}
+  {ubit: <ronyparm>, progress: did work on enable and disabling values associated with characters}
+  {ubit: <joelhigh>, progress: working on getting values from selection to battle so combat can happen}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Went over with Mike what still needs to be done for submisson of this sprint.
+  Told us to make sure integration will work well.
+  

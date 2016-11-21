@@ -1,0 +1,19 @@
+date: November 2, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: None}
+  {ubit: <ronyparm>, progress: None}
+  {ubit: <joelhigh>, progress: None}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Went over with Mike what we want done for the next Sprint
+  Rony: enable/disable for displaying value with characters, buttons should display color, names, values and also disable when the character dies. Have 3 human and 3 computer characters.  
+  Joel: evaluation with ranges on sum, computer picks characters for battle one by one. Values carry over from selection to battle scene.
+  Alex: Back to menu and replay buttons in review scene. Integrate scoreboard with actual vattle results.
+  

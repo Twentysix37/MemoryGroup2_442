@@ -1,36 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class reviewScript : MonoBehaviour {
 
 	public Text battleResult;
-	public Text User;
-	public Text Computer;
-	public Text Outcome;
-	public int battleNum;
-	public string userChoice;
-	public string compChoice;
-	public string result;
 	public Queue userChoices = new Queue();
 	public Queue compChoices = new Queue();
 	public Queue results = new Queue();
-	public int count;
 	public Button Back;
 	public Button Main;
+
 
 
 	// Use this for initialization
 	void Start () {
 
-		generateQueues();
+		GameObject combatEventSystem = GameObject.Find ("character button");
+		Combat combatScript = combatEventSystem.GetComponent <Combat> ();
+		combatEventSystem.SetActive (false);
+
+		List<string> results = combatScript.reviewList;
+
+		//generateQueues();
 
 		Back = GetComponent<Button> ();
 		Main = GetComponent<Button> ();
 		//battleResult.text = "string";
 
-		setText ();
+		setText (results);
 	
 	}
 	
@@ -55,18 +55,37 @@ public class reviewScript : MonoBehaviour {
 		results.Enqueue ("Lose");
 	}
 
-	public void setText (){
+	public void setText (List<string> resultText){
 
-		count = 1;
+		/*int battleNum;
+		int count;
+		string userChoice;
+		string compChoice;
+		string result;*/
+		string strOne = "";
+		int battles = resultText.Count;
 
-		while (count != 5) {
+		/*
+		userChoice = userChoices.Dequeue ().ToString ();
+		compChoice = compChoices.Dequeue ().ToString ();
+		result = results.Dequeue ().ToString ();
+		battleNum = 1;
+		strOne = "Battle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
+		*/
+
+		for (int i = 0; i < resultText.Count; i++) {
+			strOne = strOne + "\n\n" + resultText [i];
+		}
+
+		/*
+		while (count < battles) {
 
 
 			userChoice = userChoices.Dequeue ().ToString ();
 			compChoice = compChoices.Dequeue ().ToString ();
 			result = results.Dequeue ().ToString ();
 			battleNum = count;
-			string strOne = "Battle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
+			strOne = strOne + "\nBattle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result; 
 
 			if (count == 1) {
 				//battleResult.text = strOne;
@@ -82,11 +101,14 @@ public class reviewScript : MonoBehaviour {
 			count = count + 1;
 
 		}
+		*/
+	
+		battleResult.text = strOne;
 	}
 
 	public void loadLastScene(){
 
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Selection V3");
 
 	}
 
