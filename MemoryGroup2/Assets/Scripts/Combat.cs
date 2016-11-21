@@ -27,10 +27,18 @@ public class Combat : MonoBehaviour {
 	List<string> Values = new List<string>();
 	List<string> cpuNames = new List<string>();
 	List<string> cpuValues = new List<string>();
+<<<<<<< HEAD
 	List<string> playerNames = new List<string> ();
 	List<string> playerValues = new List<string> ();
 	List<string> enemyNames = new List<string> ();
 	List<string> enemyValues = new List<string> ();
+=======
+	public List<string> reviewList = new List<string>();
+
+	public void Awake(){
+		DontDestroyOnLoad (this);
+	}
+>>>>>>> origin/feature
 
 	void Start(){
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
@@ -83,6 +91,8 @@ public class Combat : MonoBehaviour {
 		Player.SetActive(false);
 		Enemy.SetActive (false);
 
+		int outcome = 0;
+
 
 		//enemyani.SetBool ("Ani", false);
 		//playerani.SetBool ("Ani", false);
@@ -101,6 +111,8 @@ public class Combat : MonoBehaviour {
 
 			StartCoroutine( Waiting ("Win!"));
 
+			outcome = 1;
+
 			//backgroundSprite.enabled = false;
 
 
@@ -116,6 +128,8 @@ public class Combat : MonoBehaviour {
 			enemyani.SetBool ("Ani", true);
 
 			StartCoroutine( Waiting ("Lose!"));
+
+			outcome = 2;
 			//backgroundSprite.enabled = false;
 
 
@@ -133,12 +147,17 @@ public class Combat : MonoBehaviour {
 			enemyani.SetBool ("Ani", true);
 
 			StartCoroutine( Waiting ("Draw..."));
+
+			outcome = 3;
 			//backgroundSprite.enabled = false;
 
 		}
 		if (counter == 3) {
 			StartCoroutine(waitNextScene ());
 		}
+
+		recordResult (PlayerValue, counter, outcome);
+
 	}
 
 	IEnumerator Waiting (string text){
@@ -154,6 +173,35 @@ public class Combat : MonoBehaviour {
 		yield return new WaitForSecondsRealtime(2.5f);
 		loadNextScene ();
 	}
+
+	public void recordResult(int pValue, int count, int result){
+
+		string pName;
+		string eName;
+		string pVal;
+		string eVal;
+		string finish;
+		string outcomeString = "";
+
+		pName = Names [pValue];
+		pVal = Values [pValue];
+		eName = cpuNames [count];
+		eVal = cpuValues [count];
+
+
+		if (result == 1) {
+			finish = "Win";
+		} else if (result == 2) {
+			finish = "Lose";
+		} else {
+			finish = "Draw";
+		}
+
+		outcomeString = "User: " + pName + " Value: " + pVal + " Computer: " + eName + " Value: " + eVal + " Result: " + finish;
+		reviewList.Add (outcomeString);
+	}
+
+
 
 	public void loadLastScene(){
 

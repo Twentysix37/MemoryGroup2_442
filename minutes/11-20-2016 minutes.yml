@@ -1,0 +1,17 @@
+date: November 20, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: worked with Joel on battle and review so outcomes will carry over}
+  {ubit: <ronyparm>, progress: worked with Joel on values going from selection to battle}
+  {ubit: <joelhigh>, progress: worked with Rony and Alex and making sure data is passed from scene to scene to scene}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Finished up project for submission for this sprint.
+  Integrated all parts of project and did testing to make sure everything was working alright.
+  

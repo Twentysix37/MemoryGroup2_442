@@ -1,0 +1,17 @@
+date: November 9, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: replay and menu buttons finished}
+  {ubit: <ronyparm>, progress: buttons are starting to have the color and name on them}
+  {ubit: <joelhigh>, progress: almost done with evaluation script and starting work on computer selection}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Showed Mike progress made so far.
+  Made sure that replay button was only suppose to go back to battle scene, not selection.
+  
