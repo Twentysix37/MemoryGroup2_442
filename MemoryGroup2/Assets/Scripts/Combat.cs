@@ -274,6 +274,16 @@ public class Combat : MonoBehaviour {
 		Player.SetActive(false);
 		Enemy.SetActive (false);
 
+		List<string> PlayerImg = new List<string>();
+		List<string> EnemyImg = new List<string>();
+		PlayerImg.Add ("Prefab/KnightAttack_0");
+		PlayerImg.Add ("Prefab/BlackKnightAttack_0");
+		PlayerImg.Add ("Prefab/RedKnight");
+
+		EnemyImg.Add ("Prefab/OrckAttack_0");
+		EnemyImg.Add ("Prefab/RedOrckAttack_0");
+		EnemyImg.Add ("Prefab/OrckAttackBlack_0");
+
 		int outcome = 0;
 
 
@@ -283,12 +293,12 @@ public class Combat : MonoBehaviour {
 		if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) <= 800) {//EnemyValue) {
 			counter++;
 			
-			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
+			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
 			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 
@@ -301,11 +311,11 @@ public class Combat : MonoBehaviour {
 
 		} else if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) >= 1300) { //EnemyValue) {
 			counter++;
-			Player = GameObject.Instantiate (Resources.Load ("Prefab/KnightAttack_0", typeof(GameObject))) as GameObject;
+			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 
-			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttackBlack_0", typeof(GameObject))) as GameObject;
+			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
 			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
@@ -319,12 +329,12 @@ public class Combat : MonoBehaviour {
 
 		} else {
 			counter++;
-			Player = GameObject.Instantiate (Resources.Load ("Prefab/RedKnight", typeof(GameObject))) as GameObject;
+			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
 			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
 			playerani = playerSpriteRenderer.GetComponent<Animator> ();
 			playerani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load ("Prefab/OrckAttack_0", typeof(GameObject))) as GameObject;
+			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
 			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
 			enemyani = Enemy.GetComponent<Animator> ();
 			enemyani.SetBool ("Ani", true);
