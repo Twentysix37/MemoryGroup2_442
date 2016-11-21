@@ -9,9 +9,8 @@ public class Combat : MonoBehaviour {
 	public Text ResultText;
 	public int PlayerValue;
 	public int EnemyValue;
-	public GameObject Button1;
-	public GameObject Button2;
-	public GameObject Button3;
+	public Dictionary<string,string> playerd;
+	public Dictionary<string,string> computerd;
 	Image backgroundSprite;
 	public GameObject Player;
 	//public SpriteRenderer Player;
@@ -32,6 +31,32 @@ public class Combat : MonoBehaviour {
 	List<string> enemyNames = new List<string> ();
 	List<string> enemyValues = new List<string> ();
 	public List<string> reviewList = new List<string>();
+	public Text playerOne;
+	public Text playerTwo;
+	public Text playerThree;
+	public Text computerOne;
+	public Text computerTwo;
+	public Text computerThree;
+	public Text playerOneValue;
+	public Text playerTwoValue;
+	public Text playerThreeValue;
+	public Text computerOneValue;
+	public Text computerTwoValue;
+	public Text computerThreeValue;
+	public Button playerButton1;
+	public Button playerButton2;
+	public Button playerButton3;
+	public Button computerButton1;
+	public Button computerButton2;
+	public Button computerButton3;
+	public string playerOneString;
+	public string playerTwoString;
+	public string playerThreeString;
+	public string computerOneString;
+	public string computerTwoString;
+	public string computerThreeString;
+	public int total;
+
 
 	public void Awake(){
 		DontDestroyOnLoad (this);
@@ -39,6 +64,8 @@ public class Combat : MonoBehaviour {
 
 
 	void Start(){
+		playerd = new Dictionary<string,string> ();
+		computerd = new Dictionary<string,string> ();
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
 		selectionCanvas.SetActive(false);
 		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
@@ -78,13 +105,167 @@ public class Combat : MonoBehaviour {
 		cpuValues.Add(enemyValues [1]);
 		cpuValues.Add(enemyValues [2]);
 
+		playerd.Add (playerNames [0], playerValues [0]);
+		playerd.Add (playerNames [1], playerValues [1]);
+		playerd.Add (playerNames [2], playerValues [2]);
+		computerd.Add (enemyNames [0], enemyValues [0]);
+		computerd.Add (enemyNames [1], enemyValues [1]);
+		computerd.Add (enemyNames [2], enemyValues [2]);
+
+		playerButton1 = playerButton1.GetComponent<Button> ();
+		playerButton2 = playerButton2.GetComponent<Button> ();
+		playerButton3 = playerButton3.GetComponent<Button> ();
+
+		computerButton1 = computerButton1.GetComponent<Button> ();
+		computerButton2 = computerButton2.GetComponent<Button> ();
+		computerButton3 = computerButton3.GetComponent<Button> ();
+		Buttonupdate ();
+		total = 0;
+
 //		Button1.GetComponentInChildren<Text>().text = Names[0];
 //		Button2.GetComponentInChildren<Text>().text = Names[1];
 //		Button3.GetComponentInChildren<Text>().text = Names[2];
 	}
 
+	public void buttonOne(){
+		cantClick (playerButton1, playerOneValue);
+		int j = CombatResult (0);
+		if (j==1){//==2) {
+			decision (playerOneString,playerOneValue,computerOneValue,computerOneString,playerButton1,computerButton1,"death2");
+		} else 	if (j==2){//==2) {
+			decision (playerOneString,playerOneValue, computerOneValue,computerOneString,playerButton1,computerButton1,"death1");
+		}  else if (j==3){//==2) {
+			decision (playerOneString,playerOneValue, computerOneValue,computerOneString,playerButton1,computerButton1,"draw");
+		}
+		//decision ("rony","rony2", playerButton1, playerButton2,"death1");
 
-	public void CombatResult (int PlayerValue){
+	}
+	public void buttonTwo(){
+		cantClick (playerButton2, playerTwoValue);
+		int j = CombatResult (1);
+		if (j==1){//==2) {
+			decision (playerTwoString,playerTwoValue,computerTwoValue,computerTwoString,playerButton2,computerButton2,"death2");
+		} else 	if (j==2){//==2) {
+			decision (playerTwoString,playerTwoValue,computerTwoValue,computerTwoString,playerButton2,computerButton2,"death1");
+		}  else if (j==3){//==2) {
+			decision (playerTwoString,playerTwoValue,computerTwoValue,computerTwoString,playerButton2,computerButton2,"draw");
+		}
+
+	}
+	public void buttonThree(){
+		cantClick (playerButton3, playerThreeValue);
+		int j = CombatResult (2);
+		if (j==1){//==2) {
+			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"death2");
+		} else 	if (j==2){//==2) {
+			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"death1");
+		}  else if (j==3){//==2) {
+			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"draw");
+		}
+
+	}
+
+	public void Buttonupdate(){
+		int count = 0;
+		foreach (string pair in playerd.Keys) {//use player dictionary
+			if (count == 0) {
+				playerOne.text = pair;
+				playerOneValue.text = playerd [pair];
+			} else if (count == 1) {
+				playerTwo.text = pair;
+				playerTwoValue.text = playerd [pair];
+			} else if (count == 2) {
+				playerThree.text =  pair;
+				playerThreeValue.text = playerd [pair];
+			}
+			count = count + 1;
+		}
+		count = 0;
+		foreach (string pair in computerd.Keys) {//use computer dictionary
+			if (count == 0) {
+				computerOne.text = pair;
+				computerOneValue.text = computerd [pair];
+			} else if (count == 1) {
+				computerTwo.text =  pair;
+				computerTwoValue.text = computerd [pair];
+			} else if (count == 2) {
+				computerThree.text =  pair;
+				computerThreeValue.text = computerd [pair];
+			}
+			count = count + 1;
+		}
+		characterStrings ();
+	}
+
+	public void cantClick(Button choosen, Text t){
+		choosen.enabled = false;
+		choosen.GetComponentInChildren<Text> ().text = "-";
+		t.text = "-";
+	}
+
+	public void characterStrings(){//scope of character names are throughout the whole code
+		playerOneString = playerOne.text;
+		playerTwoString = playerTwo.text;
+		playerThreeString = playerThree.text;
+		computerOneString = computerOne.text;
+		computerTwoString = computerTwo.text;
+		computerThreeString = computerThree.text;
+	}
+
+	int disableCount=0;
+	public void disableButton(){
+		if (disableCount % 2 == 0) {
+			playerOneValue.text = "-";
+			playerTwoValue.text = "-";
+			playerThreeValue.text = "-";
+			computerOneValue.text = "-";
+			computerTwoValue.text = "-";
+			computerThreeValue.text = "-";
+		} else {
+			if (playerButton1.GetComponentInChildren<Text> ().text != "-") {
+				playerOneValue.text = playerd [playerOneString];
+			}
+			if (playerButton2.GetComponentInChildren<Text> ().text != "-") {
+				playerTwoValue.text = playerd [playerTwoString];
+			}
+			if (playerButton3.GetComponentInChildren<Text> ().text != "-") {
+				playerThreeValue.text = playerd [playerThreeString];
+			}
+			if(computerButton1.GetComponentInChildren<Text> ().text !="-"){
+			computerOneValue.text = computerd [computerOneString];
+			}
+			if(computerButton2.GetComponentInChildren<Text> ().text !="-"){
+			computerTwoValue.text = computerd [computerTwoString];
+			} 
+			if(computerButton3.GetComponentInChildren<Text> ().text !="-"){
+			computerThreeValue.text = computerd [computerThreeString];
+			}
+		}
+		disableCount = disableCount + 1;
+	}
+
+	public void decision(string characterText1, Text characterValue1, Text characterValue2, string characterText2, Button characterButton1, Button characterButton2, string result){
+		if (result == "death1") {
+			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
+			characterButton2.enabled = true;
+			characterValue2.text = computerd[characterText2];
+		} else if (result == "death2") {
+			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
+			characterButton1.enabled = true;
+			characterValue1.text = playerd[characterText1];
+		} else if (result == "draw") {
+			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
+			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
+			characterButton1.enabled = true;
+			characterButton2.enabled = true;
+			characterValue1.text = playerd[characterText1];
+			characterValue2.text = computerd[characterText2];
+		}
+
+	}
+
+
+	public int CombatResult (int PlayerValue){
 		
 		Player.SetActive(false);
 		Enemy.SetActive (false);
@@ -153,8 +334,9 @@ public class Combat : MonoBehaviour {
 		if (counter == 3) {
 			StartCoroutine(waitNextScene ());
 		}
-
+			
 		recordResult (PlayerValue, counter, outcome);
+		return outcome;
 
 	}
 
@@ -171,6 +353,7 @@ public class Combat : MonoBehaviour {
 		yield return new WaitForSecondsRealtime(2.5f);
 		loadNextScene ();
 	}
+
 
 	public void recordResult(int pValue, int count, int result){
 
@@ -212,6 +395,9 @@ public class Combat : MonoBehaviour {
 		SceneManager.LoadScene("Review");
 
 	}
+
+
+
 
 	}
 

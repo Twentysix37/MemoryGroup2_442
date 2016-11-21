@@ -57,13 +57,15 @@ public class buttonCombat : MonoBehaviour {
 	List<string> playerValues = new List<string> ();
 	List<string> enemyNames = new List<string> ();
 	List<string> enemyValues = new List<string> ();
+	public Combat cbScript;
 
 	// Use this for initialization
 	void Start () {
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
 		selectionCanvas.SetActive (false);
 		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
-
+		GameObject cbCanvas = GameObject.Find ("EventSystem");
+		cbScript = cbCanvas.GetComponent <Combat> ();
 		player = new Dictionary<string, string> ();
 		computer = new Dictionary<string, string> ();
 
@@ -110,6 +112,8 @@ public class buttonCombat : MonoBehaviour {
 		computerButton3 = computerButton3.GetComponent<Button> ();
 		Buttonupdate ();
 		total = 0;
+
+
 	
 	}
 
@@ -196,9 +200,13 @@ public class buttonCombat : MonoBehaviour {
 		disableCount = disableCount + 1;
 	}
 	//TESTING FOR MY METHODS
+
 	public void buttonOne(){
 		cantClick (playerButton1, playerOneValue);
-		decision ("rony","rony2", playerButton1, playerButton2,"death1");
+		//if (cbScript.CombatResult (1,playerValues,enemyValues)!=23){//==2) {
+		//	decision (playerOneString,computerOneString,playerButton1,computerButton1,"death2");
+		//}
+		//decision ("rony","rony2", playerButton1, playerButton2,"death1");
 
 	}
 	public void buttonTwo(){
