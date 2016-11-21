@@ -152,6 +152,7 @@ public class selectionScript2 : MonoBehaviour {
 			computerDict.Add (characterOneString,"");
 		}
 		characterTwo.enabled = false;
+		characterTwo.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -168,6 +169,7 @@ public class selectionScript2 : MonoBehaviour {
 			computerDict.Add (characterTwoString,"");
 		}
 		characterOne.enabled = false;
+		characterOne.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -185,6 +187,7 @@ public class selectionScript2 : MonoBehaviour {
 			computerDict.Add (characterThreeString,"");
 		}
 		characterThree.enabled = false;
+		characterThree.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -203,6 +206,7 @@ public class selectionScript2 : MonoBehaviour {
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 		characterFour.enabled = false;
+		characterFour.GetComponentInChildren<Text> ().text = "-";
 	}
 
 	public void characterFivePress(){
@@ -217,6 +221,7 @@ public class selectionScript2 : MonoBehaviour {
 			computerDict.Add (characterFiveString,"");
 		}
 		characterFive.enabled = false;
+		characterFive.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -233,6 +238,7 @@ public class selectionScript2 : MonoBehaviour {
 			computerDict.Add (characterSixString,"");
 		}
 		characterSix.enabled = false;
+		characterSix.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}

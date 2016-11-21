@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class buttonCombat : MonoBehaviour {
 
-	public Dictionary<string, string> testDict;
 	public Sprite imageOne;
 	public Sprite imageTwo;
 	public Sprite imageThree;
@@ -47,13 +46,55 @@ public class buttonCombat : MonoBehaviour {
 	public string computerTwoString;
 	public string computerThreeString;
 	public Button Disabling;
-
-
-
+	public Dictionary<string,string> player;
+	public Dictionary<string,string> computer;
+	public GameObject selectionCanvas;
+	List<string> Names = new List<string>();
+	List<string> Values = new List<string>();
+	List<string> cpuNames = new List<string>();
+	List<string> cpuValues = new List<string>();
+	List<string> playerNames = new List<string> ();
+	List<string> playerValues = new List<string> ();
+	List<string> enemyNames = new List<string> ();
+	List<string> enemyValues = new List<string> ();
 
 	// Use this for initialization
 	void Start () {
-		testDict = new Dictionary<string, string>();
+		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
+		selectionCanvas.SetActive (false);
+		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
+
+		player = new Dictionary<string, string> ();
+		computer = new Dictionary<string, string> ();
+
+		var keyCollection = selScript.playerDict.Keys;
+		foreach (var key in keyCollection) {
+			playerNames.Add (key);
+		}
+
+		var valueCollection = selScript.playerDict.Values;
+		foreach (var val in valueCollection) {
+			playerValues.Add (val);
+		}
+
+		var keyEnemyCollection = selScript.computerDict.Keys;
+		foreach (var key in keyEnemyCollection) {
+			enemyNames.Add (key);
+		}
+
+		var valueEnemyCollection = selScript.computerDict.Values;
+		foreach (var val in valueEnemyCollection) {
+			enemyValues.Add (val);
+		}
+
+		player.Add (playerNames [0], playerValues [0]);
+		player.Add (playerNames [1], playerValues [1]);
+		player.Add (playerNames [2], playerValues [2]);
+		computer.Add (enemyNames [0], enemyValues [0]);
+		computer.Add (enemyNames [1], enemyValues [1]);
+		computer.Add (enemyNames [2], enemyValues [2]);
+
+
 		playerImage1.GetComponent<Image> ().sprite = imageOne;
 		playerImage2.GetComponent<Image> ().sprite = imageTwo;
 		playerImage3.GetComponent<Image> ().sprite = imageThree;
@@ -67,39 +108,37 @@ public class buttonCombat : MonoBehaviour {
 		computerButton1 = computerButton1.GetComponent<Button> ();
 		computerButton2 = computerButton2.GetComponent<Button> ();
 		computerButton3 = computerButton3.GetComponent<Button> ();
-		testDict.Add ("Joe","545");
-		testDict.Add ("Max","303");
-		testDict.Add ("Ian","985");
 		Buttonupdate ();
 		total = 0;
+	
 	}
 
 	public void Buttonupdate(){
 		int count = 0;
-		foreach (string pair in testDict.Keys) {//use player dictionary
+		foreach (string pair in player.Keys) {//use player dictionary
 			if (count == 0) {
 				playerOne.text = pair;
-				playerOneValue.text = testDict [pair];
+				playerOneValue.text = player [pair];
 			} else if (count == 1) {
 				playerTwo.text = pair;
-				playerTwoValue.text = testDict [pair];
+				playerTwoValue.text = player [pair];
 			} else if (count == 2) {
 				playerThree.text =  pair;
-				playerThreeValue.text = testDict [pair];
+				playerThreeValue.text = player [pair];
 			}
 			count = count + 1;
 		}
 		count = 0;
-		foreach (string pair in testDict.Keys) {//use computer dictionary
+		foreach (string pair in computer.Keys) {//use computer dictionary
 			if (count == 0) {
 				computerOne.text = pair;
-				computerOneValue.text = testDict [pair];
+				computerOneValue.text = computer [pair];
 			} else if (count == 1) {
 				computerTwo.text =  pair;
-				computerTwoValue.text = testDict [pair];
+				computerTwoValue.text = computer [pair];
 			} else if (count == 2) {
 				computerThree.text =  pair;
-				computerThreeValue.text = testDict [pair];
+				computerThreeValue.text = computer [pair];
 			}
 			count = count + 1;
 		}
@@ -147,12 +186,12 @@ public class buttonCombat : MonoBehaviour {
 			computerTwoValue.text = "-";
 			computerThreeValue.text = "-";
 		} else {
-				playerOneValue.text = testDict [playerOneString];
-				playerTwoValue.text = testDict [playerTwoString];
-				playerThreeValue.text = testDict [playerThreeString];
-				computerOneValue.text = testDict [computerOneString];
-				computerTwoValue.text = testDict [computerTwoString];
-				computerThreeValue.text = testDict [computerThreeString];
+				playerOneValue.text = player [playerOneString];
+				playerTwoValue.text = player [playerTwoString];
+				playerThreeValue.text = player [playerThreeString];
+				computerOneValue.text = computer [computerOneString];
+				computerTwoValue.text = computer [computerTwoString];
+				computerThreeValue.text = computer [computerThreeString];
 		}
 		disableCount = disableCount + 1;
 	}

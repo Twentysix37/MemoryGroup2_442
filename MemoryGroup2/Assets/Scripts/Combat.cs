@@ -27,15 +27,16 @@ public class Combat : MonoBehaviour {
 	List<string> Values = new List<string>();
 	List<string> cpuNames = new List<string>();
 	List<string> cpuValues = new List<string>();
+	List<string> playerNames = new List<string> ();
+	List<string> playerValues = new List<string> ();
+	List<string> enemyNames = new List<string> ();
+	List<string> enemyValues = new List<string> ();
 
 	void Start(){
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
 		selectionCanvas.SetActive(false);
 		selectionScript2 selScript = selectionCanvas.GetComponent <selectionScript2> ();
-		List<string> playerNames = new List<string> ();
-		List<string> playerValues = new List<string> ();
-		List<string> enemyNames = new List<string> ();
-		List<string> enemyValues = new List<string> ();
+
 
 		var keyCollection = selScript.playerDict.Keys;
 		foreach (var key in keyCollection) {
@@ -71,10 +72,11 @@ public class Combat : MonoBehaviour {
 		cpuValues.Add(enemyValues [1]);
 		cpuValues.Add(enemyValues [2]);
 
-		Button1.GetComponentInChildren<Text>().text = Names[0];
-		Button2.GetComponentInChildren<Text>().text = Names[1];
-		Button3.GetComponentInChildren<Text>().text = Names[2];
+//		Button1.GetComponentInChildren<Text>().text = Names[0];
+//		Button2.GetComponentInChildren<Text>().text = Names[1];
+//		Button3.GetComponentInChildren<Text>().text = Names[2];
 	}
+
 
 	public void CombatResult (int PlayerValue){
 		
@@ -132,7 +134,6 @@ public class Combat : MonoBehaviour {
 
 			StartCoroutine( Waiting ("Draw..."));
 			//backgroundSprite.enabled = false;
-
 
 		}
 		if (counter == 3) {
