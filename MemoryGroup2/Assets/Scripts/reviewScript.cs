@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class reviewScript : MonoBehaviour {
 
 	public Text battleResult;
-	public Text User;
-	public Text Computer;
-	public Text Outcome;
 	public Queue userChoices = new Queue();
 	public Queue compChoices = new Queue();
 	public Queue results = new Queue();
@@ -21,8 +18,9 @@ public class reviewScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		GameObject combatEventSystem = GameObject.Find ("EventSystem");
+		GameObject combatEventSystem = GameObject.Find ("character button");
 		Combat combatScript = combatEventSystem.GetComponent <Combat> ();
+		combatEventSystem.SetActive (false);
 
 		List<string> results = combatScript.reviewList;
 
@@ -76,7 +74,7 @@ public class reviewScript : MonoBehaviour {
 		*/
 
 		for (int i = 0; i < resultText.Count; i++) {
-			strOne = strOne + "\n" + resultText [i];
+			strOne = strOne + "\n\n" + resultText [i];
 		}
 
 		/*
@@ -110,7 +108,7 @@ public class reviewScript : MonoBehaviour {
 
 	public void loadLastScene(){
 
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Selection V3");
 
 	}
 

@@ -370,8 +370,8 @@ public class Combat : MonoBehaviour {
 
 		pName = Names [pValue];
 		pVal = Values [pValue];
-		eName = cpuNames [count];
-		eVal = cpuValues [count];
+		eName = cpuNames [count-1];
+		eVal = cpuValues [count-1];
 
 
 		if (result == 1) {
