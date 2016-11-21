@@ -27,18 +27,16 @@ public class Combat : MonoBehaviour {
 	List<string> Values = new List<string>();
 	List<string> cpuNames = new List<string>();
 	List<string> cpuValues = new List<string>();
-<<<<<<< HEAD
 	List<string> playerNames = new List<string> ();
 	List<string> playerValues = new List<string> ();
 	List<string> enemyNames = new List<string> ();
 	List<string> enemyValues = new List<string> ();
-=======
 	public List<string> reviewList = new List<string>();
 
 	public void Awake(){
 		DontDestroyOnLoad (this);
 	}
->>>>>>> origin/feature
+
 
 	void Start(){
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
