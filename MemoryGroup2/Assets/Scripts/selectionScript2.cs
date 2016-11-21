@@ -98,8 +98,8 @@ public class selectionScript2 : MonoBehaviour {
 
 	public List<string> generateValue(){//generates value for static map
 		List<string> generator = new List<string> ();
-		generator.Add (""+Random.Range(1,254));
-		generator.Add (""+Random.Range(1,254));
+		generator.Add (""+Random.Range(200,800));
+		generator.Add (""+Random.Range(200,800));
 		return generator;
 	}
 
@@ -151,7 +151,8 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterOneString,"");
 		}
-			
+		characterTwo.enabled = false;
+		characterTwo.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -167,7 +168,8 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterTwoString,"");
 		}
-
+		characterOne.enabled = false;
+		characterOne.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -184,7 +186,8 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterThreeString,"");
 		}
-
+		characterThree.enabled = false;
+		characterThree.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 
@@ -202,6 +205,8 @@ public class selectionScript2 : MonoBehaviour {
 		}
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
+		characterFour.enabled = false;
+		characterFour.GetComponentInChildren<Text> ().text = "-";
 	}
 
 	public void characterFivePress(){
@@ -215,7 +220,8 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterFiveString,"");
 		}
-
+		characterFive.enabled = false;
+		characterFive.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -231,7 +237,8 @@ public class selectionScript2 : MonoBehaviour {
 		} else {
 			computerDict.Add (characterSixString,"");
 		}
-
+		characterSix.enabled = false;
+		characterSix.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
 	}
@@ -287,9 +294,14 @@ public class selectionScript2 : MonoBehaviour {
 		} else if (CharacterPanelcount == 5) {
 			computerCharacter3.text = currentCharacter + " Value: " + computerDict [currentCharacter];
 			startButton.enabled = true;
+
+		}
+		turnText ();
+		if (CharacterPanelcount == 5) {
+			turnPlayer.text = "Press Start";
 		}
 		CharacterPanelcount = CharacterPanelcount + 1;
-		turnText ();
+
 	}
 
 	public Dictionary<string, string> dictionaryCPU(){

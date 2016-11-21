@@ -1,0 +1,17 @@
+date: November 14, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: changed the  review scene to from static information to dynamic for the changing information coming from battle scene}
+  {ubit: <ronyparm>, progress: buttons have name and value on them in selection and there are now 6 character}
+  {ubit: <joelhigh>, progress: computer now goes throuhg its list for battle scene}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Finishing up tasks that need to be done before integrating. 
+  In the coming meetings will need to put all of our scripts together.
+  
