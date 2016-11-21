@@ -185,6 +185,7 @@ MonoBehaviour:
   Player: {fileID: 105414844}
   Enemy: {fileID: 353740637}
   Back: {fileID: 1697042947}
+  reviewList: []
 --- !u!1 &105414844 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013967019614, guid: 3a1d1bccaefe9fa4ab8195603ebcabda,
@@ -576,6 +577,11 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: Attack3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013596900690, guid: de52d9f888880ad49961d49ba47b385a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de52d9f888880ad49961d49ba47b385a, type: 2}
@@ -1110,7 +1116,7 @@ Prefab:
     - target: {fileID: 114000013596900690, guid: de52d9f888880ad49961d49ba47b385a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: -1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000010245891658, guid: de52d9f888880ad49961d49ba47b385a,
         type: 2}
