@@ -383,7 +383,7 @@ public class Combat : MonoBehaviour {
 				StartCoroutine (waitNextScene ());
 				return 1;
 			} else if (cpuValues.Count == 0) {
-				reviewList.Insert (0, "lost");
+				reviewList.Insert (0, "win");
 				StartCoroutine (waitNextScene ());
 				return 2;
 			}else if (lostCounter == 3) {
