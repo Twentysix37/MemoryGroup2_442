@@ -208,6 +208,9 @@ MonoBehaviour:
   computerTwoString: 
   computerThreeString: 
   total: 0
+  drawCounter: 0
+  lostCounter: 0
+  enemyCounter: 0
 --- !u!1 &46184151
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,8 +490,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 133}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -125, y: 132}
+  m_SizeDelta: {x: 152, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &318109643
 GameObject:
@@ -611,8 +614,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204, y: 87}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -300, y: 87}
+  m_SizeDelta: {x: 152, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &353740637 stripped
 GameObject:
@@ -1127,7 +1130,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.28863725}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43, y: 91}
+  m_AnchoredPosition: {x: -125, y: 91}
   m_SizeDelta: {x: 152, y: -44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &674901154
@@ -1251,8 +1254,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 83}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -125, y: 87}
+  m_SizeDelta: {x: 152, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &695697727
 GameObject:
@@ -1799,8 +1802,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 39}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -125, y: 39}
+  m_SizeDelta: {x: 152, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1141012137
 GameObject:
@@ -1903,7 +1906,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2001,6 +2004,9 @@ MonoBehaviour:
   computerTwoString: 
   computerThreeString: 
   total: 0
+  drawCounter: 0
+  lostCounter: 0
+  enemyCounter: 0
 --- !u!1 &1185685857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,8 +2433,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204, y: 39}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -300, y: 39}
+  m_SizeDelta: {x: 152, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1532093945
 GameObject:
@@ -2623,7 +2629,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -203, y: -16}
+  m_AnchoredPosition: {x: -300, y: -16}
   m_SizeDelta: {x: 152, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1692196577
@@ -3080,8 +3086,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204, y: 132}
-  m_SizeDelta: {x: 152, y: 23}
+  m_AnchoredPosition: {x: -300, y: 132}
+  m_SizeDelta: {x: 152, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1751883901
 GameObject:
