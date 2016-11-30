@@ -148,8 +148,6 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterOneString,"");
 
-		} else {
-			computerDict.Add (characterOneString,"");
 		}
 		characterTwo.enabled = false;
 		characterTwo.GetComponentInChildren<Text> ().text = "-";
@@ -165,8 +163,6 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterTwoString,"");
 
-		} else {
-			computerDict.Add (characterTwoString,"");
 		}
 		characterOne.enabled = false;
 		characterOne.GetComponentInChildren<Text> ().text = "-";
@@ -183,9 +179,7 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterThreeString,"");
 
-		} else {
-			computerDict.Add (characterThreeString,"");
-		}
+		} 
 		characterThree.enabled = false;
 		characterThree.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
@@ -200,8 +194,6 @@ public class selectionScript2 : MonoBehaviour {
 		valueText (valuesfromHash);
 		if (counter % 2 != 0) {
 			playerDict.Add (characterFourString,"");
-		} else {
-			computerDict.Add (characterFourString,"");
 		}
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -217,9 +209,7 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterFiveString,"");
 
-		} else {
-			computerDict.Add (characterFiveString,"");
-		}
+		} 
 		characterFive.enabled = false;
 		characterFive.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
@@ -234,9 +224,7 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterSixString,"");
 
-		} else {
-			computerDict.Add (characterSixString,"");
-		}
+		} 
 		characterSix.enabled = false;
 		characterSix.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
@@ -260,39 +248,38 @@ public class selectionScript2 : MonoBehaviour {
 
 	public void valueOnePress(){
 		valueCanvas.enabled = false;
-		if (turn == true) {
-			playerDict [currentCharacter] = value4One;
-		} else if (turn == false) {
-			computerDict [currentCharacter] = value4One;
-		}
+		playerDict [currentCharacter] = value4One;
 		characterUpdate ();
+		characterUpdate (); //for computer
 		//store into a map
 	}
 
 	public void valueTwoPress(){
 		valueCanvas.enabled = false;
-		if (turn == true) {
-			playerDict [currentCharacter] = value4Two;
-		} else if (turn == false) {
-			computerDict [currentCharacter] = value4Two;
-		}
+		playerDict [currentCharacter] = value4Two;
 		characterUpdate ();
+		characterUpdate (); //for computer
 		//store into a map
 	}
 
 	public void characterUpdate(){
+
+		string computerSelectionPhase;
 		if (CharacterPanelcount == 0) {
 			playeroneCharacter1.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 1) {
-			computerCharacter1.text = currentCharacter + " Value: " + computerDict [currentCharacter];
+			computerSelectionPhase = computerChoice (characterTwo, characterOne, characterThree, characterFour, characterFive, characterSix);
+			computerCharacter1.text = computerSelectionPhase + " Value: " + computerDict [computerSelectionPhase];
 		} else if (CharacterPanelcount == 2) {
 			playeroneCharacter2.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 3) {
-			computerCharacter2.text = currentCharacter + " Value: " + computerDict [currentCharacter];
+			computerSelectionPhase = computerChoice (characterTwo, characterOne, characterThree, characterFour, characterFive, characterSix);
+			computerCharacter2.text = computerSelectionPhase + " Value: " + computerDict [computerSelectionPhase];
 		} else if (CharacterPanelcount == 4) {
 			playeroneCharacter3.text = currentCharacter + " Value: " + playerDict [currentCharacter];
 		} else if (CharacterPanelcount == 5) {
-			computerCharacter3.text = currentCharacter + " Value: " + computerDict [currentCharacter];
+			computerSelectionPhase = computerChoice (characterTwo, characterOne, characterThree, characterFour, characterFive, characterSix);
+			computerCharacter3.text = computerSelectionPhase + " Value: " + computerDict [computerSelectionPhase];
 			startButton.enabled = true;
 
 		}
@@ -302,6 +289,61 @@ public class selectionScript2 : MonoBehaviour {
 		}
 		CharacterPanelcount = CharacterPanelcount + 1;
 
+	}
+
+
+	public string computerChoice(Button charOne, Button charTwo, Button charThree, Button charFour, Button charFive, Button charSix){
+		List<string> temp = new List<string>();
+
+		string tempCharacter = charOne.GetComponentInChildren<Text> ().text;
+		if (tempCharacter != "-") {
+			temp.Add (tempCharacter);
+		}
+		string tempCharacter1 = charTwo.GetComponentInChildren<Text> ().text;
+		if (tempCharacter1 != "-") {
+			temp.Add (tempCharacter1);
+		}
+		string tempCharacter2 = charThree.GetComponentInChildren<Text> ().text;
+		if (tempCharacter2 != "-") {
+			temp.Add (tempCharacter2);
+		}
+		string tempCharacter3 = charFour.GetComponentInChildren<Text> ().text;
+		if (tempCharacter3 != "-") {
+			temp.Add (tempCharacter3);
+		}
+		string tempCharacter4 = charFive.GetComponentInChildren<Text> ().text;
+		if (tempCharacter4 != "-") {
+			temp.Add (tempCharacter4);
+		}
+		string tempCharacter5 = charSix.GetComponentInChildren<Text> ().text;
+		if (tempCharacter5 != "-") {
+			temp.Add (tempCharacter5);
+		}
+		int listSize = temp.Count;
+		int listLocation = Random.Range (0, listSize-1);
+		List<string> listValue = theHash[temp[listLocation]];
+		int listValueSize = listValue.Count;
+		int listLocation2 = Random.Range (0, listValueSize-1);
+		computerDict.Add(temp[listLocation], listValue[listLocation2]);
+		if(tempCharacter == temp[listLocation]){
+			charOne.GetComponentInChildren<Text> ().text = "-";
+		}
+		if(tempCharacter1 == temp[listLocation]){
+			charTwo.GetComponentInChildren<Text> ().text = "-";
+		}
+		if(tempCharacter2 == temp[listLocation]){
+			charThree.GetComponentInChildren<Text> ().text = "-";
+		}
+		if(tempCharacter3 == temp[listLocation]){
+			charFour.GetComponentInChildren<Text> ().text = "-";
+		}
+		if(tempCharacter4 == temp[listLocation]){
+			charFive.GetComponentInChildren<Text> ().text = "-";
+		}
+		if(tempCharacter5 == temp[listLocation]){
+			charSix.GetComponentInChildren<Text> ().text = "-";
+		}
+		return temp [listLocation];
 	}
 
 	public Dictionary<string, string> dictionaryCPU(){
