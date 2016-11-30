@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class reviewScript : MonoBehaviour {
 
 	public Text battleResult;
+	public Text combatResult;
 	public Queue userChoices = new Queue();
 	public Queue compChoices = new Queue();
 	public Queue results = new Queue();
@@ -63,6 +64,7 @@ public class reviewScript : MonoBehaviour {
 		string compChoice;
 		string result;*/
 		string strOne = "";
+		string mainResult = resultText[0];
 		int battles = resultText.Count;
 
 		/*
@@ -73,8 +75,15 @@ public class reviewScript : MonoBehaviour {
 		strOne = "Battle: " + battleNum.ToString() + " User: " + userChoice + " Computer: " + compChoice + " Result: " + result;
 		*/
 
-		for (int i = 0; i < resultText.Count; i++) {
-			strOne = strOne + "\n\n" + resultText [i];
+		if (mainResult == "win") {
+			combatResult.text = "Player Won!";
+		} else if (mainResult == "lost") {
+			combatResult.text = "Player Lost";
+		} else if (mainResult == "draw") {
+			combatResult.text = "Draw Loop";
+		}
+		for (int i = 1; i < resultText.Count; i++) {
+			strOne = strOne + "\n" + resultText [i];
 		}
 
 		/*

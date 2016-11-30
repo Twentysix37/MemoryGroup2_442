@@ -56,6 +56,9 @@ public class Combat : MonoBehaviour {
 	public string computerTwoString;
 	public string computerThreeString;
 	public int total;
+	public int drawCounter = 0;
+	public int lostCounter = 0;
+	public int enemyCounter = 0;
 
 
 	public void Awake(){
@@ -270,6 +273,12 @@ public class Combat : MonoBehaviour {
 
 
 	public int CombatResult (int PlayerValue){
+
+		string compName;
+		string compVal;
+		string playerName;
+		string playerVal;
+
 		
 		Player.SetActive(false);
 		Enemy.SetActive (false);
@@ -287,72 +296,112 @@ public class Combat : MonoBehaviour {
 		int outcome = 0;
 
 
-		//enemyani.SetBool ("Ani", false);
-		//playerani.SetBool ("Ani", false);
-		backgroundSprite = ResultText.GetComponentInParent<Image> ();
-		if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) <= 800) {//EnemyValue) {
-			counter++;
+			//enemyani.SetBool ("Ani", false);
+			//playerani.SetBool ("Ani", false);
+			backgroundSprite = ResultText.GetComponentInParent<Image> ();
+			if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [0]))) <= 1000) {//EnemyValue) {
+				counter++;
 			
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-			playerani.SetBool ("Ani", true);
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
+				playerani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
 
-			StartCoroutine( Waiting ("Win!"));
+				StartCoroutine (Waiting ("Win!"));
 
-			outcome = 1;
+				outcome = 1;
 
-			//backgroundSprite.enabled = false;
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [0];
+				cpuValues.RemoveAt (0);
+				compName = cpuNames [0];
+				cpuNames.RemoveAt (0);
+				
+				enemyCounter++;
 
-
-		} else if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) >= 1300) { //EnemyValue) {
-			counter++;
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
-			enemyani.SetBool ("Ani", true);
-
-			StartCoroutine( Waiting ("Lose!"));
-
-			outcome = 2;
-			//backgroundSprite.enabled = false;
+				//backgroundSprite.enabled = false;
 
 
+			} else if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [0]))) >= 1100) { //EnemyValue) {
+				counter++;
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
 
-		} else {
-			counter++;
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-			playerani.SetBool ("Ani", true);
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
+				enemyani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
-			enemyani.SetBool ("Ani", true);
+				StartCoroutine (Waiting ("Lose!"));
 
-			StartCoroutine( Waiting ("Draw..."));
+				outcome = 2;
+				//backgroundSprite.enabled = false;
 
-			outcome = 3;
-			//backgroundSprite.enabled = false;
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [0];
+				compName = cpuNames [0];
 
+				lostCounter++;
+
+			} else {
+				counter++;
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
+				playerani.SetBool ("Ani", true);
+
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
+				enemyani.SetBool ("Ani", true);
+
+				StartCoroutine (Waiting ("Draw..."));
+
+				outcome = 3;
+				//backgroundSprite.enabled = false;
+
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [0];
+				compName = cpuNames [0];
+
+				drawCounter++;
+
+			}
+
+		recordResult (playerName, playerVal, compName, compVal, outcome);
+
+			if (Values.Count == 0) {
+				reviewList.Insert (0, "win");
+				StartCoroutine (waitNextScene ());
+				return 1;
+			} else if (cpuValues.Count == 0) {
+				reviewList.Insert (0, "lost");
+				StartCoroutine (waitNextScene ());
+				return 2;
+			}else if (lostCounter == 3) {
+				reviewList.Insert (0, "lost");
+				StartCoroutine (waitNextScene ());
+				return 3;
+			}else if (drawCounter == 3) {
+				reviewList.Insert (0, "draw");
+				StartCoroutine (waitNextScene ());
+				return 4;
+			}	
+			/*if (counter == 3) {
+				StartCoroutine (waitNextScene ());
+			}*/
+
+			return outcome;
 		}
-		if (counter == 3) {
-			StartCoroutine(waitNextScene ());
-		}
-			
-		recordResult (PlayerValue, counter, outcome);
-		return outcome;
-
-	}
+		
 
 	IEnumerator Waiting (string text){
 		yield return new WaitForSecondsRealtime(1.5f);
@@ -369,20 +418,23 @@ public class Combat : MonoBehaviour {
 	}
 
 
-	public void recordResult(int pValue, int count, int result){
+	public void recordResult(string one, string two, string three, string four, int result){
 
-		string pName;
-		string eName;
-		string pVal;
-		string eVal;
+		string pName = one;
+		string eName = three;
+		string pVal = two;
+		string eVal = four;
 		string finish;
 		string outcomeString = "";
+
+		/*
 
 		pName = Names [pValue];
 		pVal = Values [pValue];
 		eName = cpuNames [count-1];
 		eVal = cpuValues [count-1];
 
+		*/
 
 		if (result == 1) {
 			finish = "Win";
