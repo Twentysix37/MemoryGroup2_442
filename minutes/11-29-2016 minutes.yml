@@ -1,0 +1,16 @@
+date: November 29, 2016
+meeting_type: group
+attendance: [<ambehr>, <ronyparm>, <joelhigh>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: made combat to not quit after 3 clicks}
+  {ubit: <ronyparm>, progress: made selection look better for the user}
+  {ubit: <joelhigh>, progress: None}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Working on getting the project ready for the presentation tomorrow
+  

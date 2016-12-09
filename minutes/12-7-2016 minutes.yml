@@ -1,0 +1,18 @@
+date: December 7, 2016
+meeting_type: ta
+attendance: [<ambehr>]
+absent: [<joelhigh>, <ronyparm>]
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: wrote the documentation for the project}
+  {ubit: <ronyparm>, progress: worked on randomly picking for the computer}
+  {ubit: <joelhigh>, progress: None}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Joel didnt know we had a meeting for Sprint 5
+  Rony was enable to make it but did get some work done
+  Mike said we still need to get a license agreement for the project
+  
