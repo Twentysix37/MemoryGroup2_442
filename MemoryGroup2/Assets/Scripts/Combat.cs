@@ -43,6 +43,7 @@ public class Combat : MonoBehaviour {
 	public Text computerOneValue;
 	public Text computerTwoValue;
 	public Text computerThreeValue;
+	public Text Versus;
 	public Button playerButton1;
 	public Button playerButton2;
 	public Button playerButton3;
@@ -59,6 +60,8 @@ public class Combat : MonoBehaviour {
 	public int drawCounter = 0;
 	public int lostCounter = 0;
 	public int enemyCounter = 0;
+	List<int> randomEnemy = new List<int> ();
+
 
 
 	public void Awake(){
@@ -67,6 +70,10 @@ public class Combat : MonoBehaviour {
 
 
 	void Start(){
+		
+		randomEnemy.Add (0);
+		randomEnemy.Add (1);
+		randomEnemy.Add (2);
 		playerd = new Dictionary<string,string> ();
 		computerd = new Dictionary<string,string> ();
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
@@ -129,6 +136,13 @@ public class Combat : MonoBehaviour {
 //		Button2.GetComponentInChildren<Text>().text = Names[1];
 //		Button3.GetComponentInChildren<Text>().text = Names[2];
 	}
+
+	void getRandomEnemy(){
+		int temp = Random.Range (0, 2);
+		if(randomEnemy.Contains(temp)){
+			return temp;
+		} return 0;
+			} 
 
 	public void buttonOne(){
 		playerButton1.enabled = false;
@@ -252,6 +266,8 @@ public class Combat : MonoBehaviour {
 	}
 
 	public void decision(string characterText1, Text characterValue1, Text characterValue2, string characterText2, Button characterButton1, Button characterButton2, string result){
+		characterButton2.GetComponentInChildren<Text> ().text = "-";
+		Versus.text = characterText1 + " VS " + characterText2; 
 		if (result == "death1") {
 			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
 			characterButton2.enabled = true;
@@ -273,7 +289,7 @@ public class Combat : MonoBehaviour {
 
 
 	public int CombatResult (int PlayerValue){
-
+		int enemyLocation = getRandomEnemy;
 		string compName;
 		string compVal;
 		string playerName;
@@ -299,7 +315,7 @@ public class Combat : MonoBehaviour {
 			//enemyani.SetBool ("Ani", false);
 			//playerani.SetBool ("Ani", false);
 			backgroundSprite = ResultText.GetComponentInParent<Image> ();
-			if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [0]))) <= 1000) {//EnemyValue) {
+			if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [enemyLocation]))) <= 1000) {//EnemyValue) {
 				counter++;
 			
 				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
@@ -307,7 +323,7 @@ public class Combat : MonoBehaviour {
 				playerani = playerSpriteRenderer.GetComponent<Animator> ();
 				playerani.SetBool ("Ani", true);
 
-				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
 				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
 				enemyani = Enemy.GetComponent<Animator> ();
 
@@ -317,23 +333,24 @@ public class Combat : MonoBehaviour {
 
 				playerName = Names [PlayerValue];
 				playerVal = Values [PlayerValue];
-				compVal = cpuValues [0];
-				cpuValues.RemoveAt (0);
-				compName = cpuNames [0];
-				cpuNames.RemoveAt (0);
+				compVal = cpuValues [enemyLocation];
+				cpuValues.RemoveAt (enemyLocation);
+				compName = cpuNames [enemyLocation];
+				cpuNames.RemoveAt (enemyLocation);
+			randomEnemy.Remove (enemyLocation);
 				
-				enemyCounter++;
+				//enemyCounter++;
 
 				//backgroundSprite.enabled = false;
 
 
-			} else if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [0]))) >= 1100) { //EnemyValue) {
+			} else if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [enemyLocation]))) >= 1100) { //EnemyValue) {
 				counter++;
 				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
 				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
 				playerani = playerSpriteRenderer.GetComponent<Animator> ();
 
-				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
 				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
 				enemyani = Enemy.GetComponent<Animator> ();
 				enemyani.SetBool ("Ani", true);
@@ -345,8 +362,8 @@ public class Combat : MonoBehaviour {
 
 				playerName = Names [PlayerValue];
 				playerVal = Values [PlayerValue];
-				compVal = cpuValues [0];
-				compName = cpuNames [0];
+				compVal = cpuValues [enemyLocation];
+				compName = cpuNames [enemyLocation];
 
 				lostCounter++;
 
@@ -357,7 +374,7 @@ public class Combat : MonoBehaviour {
 				playerani = playerSpriteRenderer.GetComponent<Animator> ();
 				playerani.SetBool ("Ani", true);
 
-				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyCounter], typeof(GameObject))) as GameObject;
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
 				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
 				enemyani = Enemy.GetComponent<Animator> ();
 				enemyani.SetBool ("Ani", true);
@@ -369,8 +386,8 @@ public class Combat : MonoBehaviour {
 
 				playerName = Names [PlayerValue];
 				playerVal = Values [PlayerValue];
-				compVal = cpuValues [0];
-				compName = cpuNames [0];
+			compVal = cpuValues [enemyLocation];
+				compName = cpuNames [enemyLocation];
 
 				drawCounter++;
 
