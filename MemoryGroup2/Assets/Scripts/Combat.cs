@@ -137,12 +137,13 @@ public class Combat : MonoBehaviour {
 //		Button3.GetComponentInChildren<Text>().text = Names[2];
 	}
 
-	void getRandomEnemy(){
+	public int getRandomEnemy(){
 		int temp = Random.Range (0, 2);
-		if(randomEnemy.Contains(temp)){
-			return temp;
-		} return 0;
-			} 
+		while(randomEnemy.Contains(temp) == false){
+			temp = Random.Range (0, 2);
+		} 
+		return temp;
+	} 
 
 	public void buttonOne(){
 		playerButton1.enabled = false;
@@ -289,7 +290,7 @@ public class Combat : MonoBehaviour {
 
 
 	public int CombatResult (int PlayerValue){
-		int enemyLocation = getRandomEnemy;
+		int enemyLocation = getRandomEnemy();
 		string compName;
 		string compVal;
 		string playerName;
@@ -334,10 +335,10 @@ public class Combat : MonoBehaviour {
 				playerName = Names [PlayerValue];
 				playerVal = Values [PlayerValue];
 				compVal = cpuValues [enemyLocation];
-				cpuValues.RemoveAt (enemyLocation);
+				//cpuValues.RemoveAt (enemyLocation);
 				compName = cpuNames [enemyLocation];
-				cpuNames.RemoveAt (enemyLocation);
-			randomEnemy.Remove (enemyLocation);
+				//cpuNames.RemoveAt (enemyLocation);
+				randomEnemy.Remove (enemyLocation);
 				
 				//enemyCounter++;
 
