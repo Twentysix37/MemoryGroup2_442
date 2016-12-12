@@ -43,6 +43,7 @@ public class Combat : MonoBehaviour {
 	public Text computerOneValue;
 	public Text computerTwoValue;
 	public Text computerThreeValue;
+	public Text Versus;
 	public Button playerButton1;
 	public Button playerButton2;
 	public Button playerButton3;
@@ -56,6 +57,14 @@ public class Combat : MonoBehaviour {
 	public string computerTwoString;
 	public string computerThreeString;
 	public int total;
+	public int drawCounter = 0;
+	public int lostCounter = 0;
+	public int enemyCounter = 0;
+	List<int> randomEnemy = new List<int> ();
+	public string currentEnemy;
+	public int currentLocationforEnemy;
+	public int currentEnemyValue;
+	public int BSint;
 
 
 	public void Awake(){
@@ -64,6 +73,12 @@ public class Combat : MonoBehaviour {
 
 
 	void Start(){
+		computerButton1.enabled = false;
+		computerButton2.enabled = false;
+		computerButton3.enabled = false;
+		randomEnemy.Add (0);
+		randomEnemy.Add (1);
+		randomEnemy.Add (2);
 		playerd = new Dictionary<string,string> ();
 		computerd = new Dictionary<string,string> ();
 		GameObject selectionCanvas = GameObject.Find ("Player Selection Canvas1");
@@ -121,13 +136,33 @@ public class Combat : MonoBehaviour {
 		computerButton3 = computerButton3.GetComponent<Button> ();
 		Buttonupdate ();
 		total = 0;
-
 //		Button1.GetComponentInChildren<Text>().text = Names[0];
 //		Button2.GetComponentInChildren<Text>().text = Names[1];
 //		Button3.GetComponentInChildren<Text>().text = Names[2];
+		BSint = getRandomEnemy();
+
 	}
 
+	public int totalPressed =0;
+	public int getRandomEnemy(){
+		int temp = Random.Range (0, 3);
+			while (randomEnemy.Contains (temp) == false) {
+				temp = Random.Range (0, 3);
+			if (randomEnemy.Count == 3) {
+				waitNextScene ();
+			}
+
+			} 
+		Versus.text = "You are currently facing : " + enemyNames [temp] + " - " + enemyValues [temp];
+			currentEnemy = enemyNames [temp];
+			currentLocationforEnemy = temp;
+			currentEnemyValue = int.Parse (enemyValues [temp]);
+
+		return temp;
+	} 
+
 	public void buttonOne(){
+		totalPressed = totalPressed + 1;
 		playerButton1.enabled = false;
 		cantClick (playerButton1, playerOneValue);
 		int j = CombatResult (0);
@@ -138,10 +173,15 @@ public class Combat : MonoBehaviour {
 		}  else if (j==3){//==2) {
 			decision (playerOneString,playerOneValue, computerOneValue,computerOneString,playerButton1,computerButton1,"draw");
 		}
+		if (randomEnemy.Count != 0 ) {
+			BSint = getRandomEnemy ();
+
+		}
 		//decision ("rony","rony2", playerButton1, playerButton2,"death1");
 
 	}
 	public void buttonTwo(){
+		totalPressed = totalPressed + 1;
 		playerButton2.enabled = false;
 		cantClick (playerButton2, playerTwoValue);
 		int j = CombatResult (1);
@@ -152,10 +192,15 @@ public class Combat : MonoBehaviour {
 		}  else if (j==3){//==2) {
 			decision (playerTwoString,playerTwoValue,computerTwoValue,computerTwoString,playerButton2,computerButton2,"draw");
 		}
+		if (randomEnemy.Count != 0 ) {
+			BSint = getRandomEnemy ();
+
+		}
 
 	}
 	public void buttonThree(){
 		playerButton3.enabled = false;
+		totalPressed = totalPressed + 1;
 		cantClick (playerButton3, playerThreeValue);
 
 		int j = CombatResult (2);
@@ -165,6 +210,10 @@ public class Combat : MonoBehaviour {
 			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"death1");
 		}  else if (j==3){//==2) {
 			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"draw");
+		}
+		if (randomEnemy.Count != 0) {
+			BSint = getRandomEnemy ();
+
 		}
 
 	}
@@ -217,7 +266,13 @@ public class Combat : MonoBehaviour {
 	}
 
 	int disableCount=0;
+	public int disableOn=0;
 	public void disableButton(){
+		if (disableOn == 0) {
+			disableOn = 1;
+		} else if (disableOn == 1) {
+			disableOn = 0;
+		}
 		if (disableCount % 2 == 0) {
 			playerOneValue.text = "-";
 			playerTwoValue.text = "-";
@@ -249,27 +304,92 @@ public class Combat : MonoBehaviour {
 	}
 
 	public void decision(string characterText1, Text characterValue1, Text characterValue2, string characterText2, Button characterButton1, Button characterButton2, string result){
+		//here to update character death
+
 		if (result == "death1") {
-			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
-			characterButton2.enabled = true;
-			characterValue2.text = computerd[characterText2];
+			if (currentLocationforEnemy == 0) {
+				computerButton1.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerOneValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton1.enabled = true;
+				
+			} else if (currentLocationforEnemy == 1) {
+				computerButton2.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerTwoValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton2.enabled = true;
+			} else if (currentLocationforEnemy == 2) {
+				computerButton3.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerThreeValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton3.enabled = true;
+			}
 		} else if (result == "death2") {
+			characterDeath (currentLocationforEnemy);
 			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
 			characterButton1.enabled = true;
-			characterValue1.text = playerd[characterText1];
+			if (disableOn == 0) {
+				characterValue1.text = playerd [characterText1];
+			}
 		} else if (result == "draw") {
 			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
-			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
+			if (currentLocationforEnemy == 0) {
+				computerButton1.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerOneValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton1.enabled = true;
+			} else if (currentLocationforEnemy == 1) {
+				computerButton2.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerTwoValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton2.enabled = true;
+			} else if (currentLocationforEnemy == 2) {
+				computerButton3.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerThreeValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton3.enabled = true;
+			}
 			characterButton1.enabled = true;
-			characterButton2.enabled = true;
-			characterValue1.text = playerd[characterText1];
-			characterValue2.text = computerd[characterText2];
+			if (disableOn == 0) {
+				characterValue1.text = playerd [characterText1];
+			}
 		}
 
+
+	}
+
+	public void characterDeath(int x){
+		if (x == 0) {
+			computerButton1.GetComponentInChildren<Text> ().text = "-";
+			computerOneValue.text = "-";
+			computerButton1.enabled = false;
+		} else if (x == 1) {
+			computerButton2.GetComponentInChildren<Text> ().text = "-";
+			computerTwoValue.text = "-";
+			computerButton2.enabled = false;
+		} else if (x == 2) {
+			computerButton3.GetComponentInChildren<Text> ().text = "-";
+			computerThreeValue.text = "-";
+			computerButton3.enabled = false;
+		}
 	}
 
 
 	public int CombatResult (int PlayerValue){
+
+		int enemyLocation = BSint;
+		
+		string compName;
+		string compVal;
+		string playerName;
+		string playerVal;
+
 		
 		Player.SetActive(false);
 		Enemy.SetActive (false);
@@ -287,72 +407,115 @@ public class Combat : MonoBehaviour {
 		int outcome = 0;
 
 
-		//enemyani.SetBool ("Ani", false);
-		//playerani.SetBool ("Ani", false);
-		backgroundSprite = ResultText.GetComponentInParent<Image> ();
-		if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) <= 800) {//EnemyValue) {
-			counter++;
+			//enemyani.SetBool ("Ani", false);
+			//playerani.SetBool ("Ani", false);
+			backgroundSprite = ResultText.GetComponentInParent<Image> ();
+			if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [enemyLocation]))) <= 1000) {//EnemyValue) {
+				counter++;
 			
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-			playerani.SetBool ("Ani", true);
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
+				playerani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
 
-			StartCoroutine( Waiting ("Win!"));
+				StartCoroutine (Waiting ("Win!"));
 
-			outcome = 1;
+				outcome = 1;
 
-			//backgroundSprite.enabled = false;
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [enemyLocation];
+				//cpuValues.RemoveAt (enemyLocation);
+				compName = cpuNames [enemyLocation];
+				//cpuNames.RemoveAt (enemyLocation);
+				randomEnemy.Remove (enemyLocation);
+				
+				//enemyCounter++;
 
-
-		} else if ((int.Parse(Values[PlayerValue]) + (int.Parse(cpuValues[counter]))) >= 1300) { //EnemyValue) {
-			counter++;
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
-			enemyani.SetBool ("Ani", true);
-
-			StartCoroutine( Waiting ("Lose!"));
-
-			outcome = 2;
-			//backgroundSprite.enabled = false;
+				//backgroundSprite.enabled = false;
 
 
+			} else if ((int.Parse (Values [PlayerValue]) + (int.Parse (cpuValues [enemyLocation]))) >= 1100) { //EnemyValue) {
+				counter++;
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
 
-		} else {
-			counter++;
-			Player = GameObject.Instantiate (Resources.Load (PlayerImg[PlayerValue], typeof(GameObject))) as GameObject;
-			playerSpriteRenderer = Player.GetComponent<SpriteRenderer>();
-			playerani = playerSpriteRenderer.GetComponent<Animator> ();
-			playerani.SetBool ("Ani", true);
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
+				enemyani.SetBool ("Ani", true);
 
-			Enemy = GameObject.Instantiate (Resources.Load (EnemyImg[counter-1], typeof(GameObject))) as GameObject;
-			enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer>();
-			enemyani = Enemy.GetComponent<Animator> ();
-			enemyani.SetBool ("Ani", true);
+				StartCoroutine (Waiting ("Lose!"));
 
-			StartCoroutine( Waiting ("Draw..."));
+				outcome = 2;
+				//backgroundSprite.enabled = false;
 
-			outcome = 3;
-			//backgroundSprite.enabled = false;
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [enemyLocation];
+				compName = cpuNames [enemyLocation];
 
+				lostCounter++;
+
+			} else {
+				counter++;
+				Player = GameObject.Instantiate (Resources.Load (PlayerImg [PlayerValue], typeof(GameObject))) as GameObject;
+				playerSpriteRenderer = Player.GetComponent<SpriteRenderer> ();
+				playerani = playerSpriteRenderer.GetComponent<Animator> ();
+				playerani.SetBool ("Ani", true);
+
+				Enemy = GameObject.Instantiate (Resources.Load (EnemyImg [enemyLocation], typeof(GameObject))) as GameObject;
+				enemySpriteRenderer = Enemy.GetComponent<SpriteRenderer> ();
+				enemyani = Enemy.GetComponent<Animator> ();
+				enemyani.SetBool ("Ani", true);
+
+				StartCoroutine (Waiting ("Draw..."));
+
+				outcome = 3;
+				//backgroundSprite.enabled = false;
+
+				playerName = Names [PlayerValue];
+				playerVal = Values [PlayerValue];
+				compVal = cpuValues [enemyLocation];
+				compName = cpuNames [enemyLocation];
+
+				drawCounter++;
+
+			}
+	
+
+		recordResult (playerName, playerVal, compName, compVal, outcome);
+
+			/*if (randomEnemy.Count == 0) {
+				reviewList.Insert (0, "win");
+				StartCoroutine (waitNextScene ());
+				return 1;
+			} */ if (randomEnemy.Count == 0) {
+				reviewList.Insert (0, "win");
+				StartCoroutine (waitNextScene ());
+				return 2;
+
+			}else if (lostCounter == 3) {
+				reviewList.Insert (0, "lost");
+				StartCoroutine (waitNextScene ());
+				return 3;
+			}else if (drawCounter == 3) {
+				reviewList.Insert (0, "draw");
+				StartCoroutine (waitNextScene ());
+				return 4;
+			}	
+			/*if (counter == 3) {
+				StartCoroutine (waitNextScene ());
+			}*/
+		
+			return outcome;
 		}
-		if (counter == 3) {
-			StartCoroutine(waitNextScene ());
-		}
-			
-		recordResult (PlayerValue, counter, outcome);
-		return outcome;
-
-	}
+		
 
 	IEnumerator Waiting (string text){
 		yield return new WaitForSecondsRealtime(1.5f);
@@ -369,20 +532,23 @@ public class Combat : MonoBehaviour {
 	}
 
 
-	public void recordResult(int pValue, int count, int result){
+	public void recordResult(string one, string two, string three, string four, int result){
 
-		string pName;
-		string eName;
-		string pVal;
-		string eVal;
+		string pName = one;
+		string eName = three;
+		string pVal = two;
+		string eVal = four;
 		string finish;
 		string outcomeString = "";
+
+		/*
 
 		pName = Names [pValue];
 		pVal = Values [pValue];
 		eName = cpuNames [count-1];
 		eVal = cpuValues [count-1];
 
+		*/
 
 		if (result == 1) {
 			finish = "Win";

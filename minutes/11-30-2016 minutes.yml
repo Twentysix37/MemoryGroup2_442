@@ -1,0 +1,19 @@
+date: November 30, 2016
+meeting_type: ta
+attendance: [<ambehr>, <ronyparm>]
+absent: [<joelhigh>]
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: None}
+  {ubit: <ronyparm>, progress: None}
+  {ubit: <joelhigh>, progress: None}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Joel didnt know we had a meeting for Sprint 5
+  Mike went over what we need to get done for the last Sprint
+  We need to make the computer show and randomly pick who it will play
+  Also need to deploy the project
+  
