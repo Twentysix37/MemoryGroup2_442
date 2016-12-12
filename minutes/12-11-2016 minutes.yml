@@ -1,0 +1,16 @@
+date: December 11, 2016
+meeting_type: group
+attendance: [<ambehr>, <joelhigh>, <ronyparm>]
+absent: []
+excused_absences: [
+  ]
+task_progress:
+  {ubit: <ambehr>, progress: fixed error with random}
+  {ubit: <ronyparm>, progress: fixed some bugs with picking player}
+  {ubit: <joelhigh>, progress: made the github io page}
+  ]
+issues: [ 
+]
+Notes:  | 
+  Finished up project for sprint 5 and deployment
+  
