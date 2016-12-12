@@ -3,7 +3,7 @@
 - Title of project: MemoryGroup 2
 - Group Memmbers: Rony Parmar, Joel High, Alex Behr
 - URL to working site:https://twentysix37.github.io/MemoryGroup2_442/
-- License type (if applicable):
+- License type: Apache License Version 2.0
 
 # Description of project:
 
