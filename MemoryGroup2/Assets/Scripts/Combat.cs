@@ -61,7 +61,10 @@ public class Combat : MonoBehaviour {
 	public int lostCounter = 0;
 	public int enemyCounter = 0;
 	List<int> randomEnemy = new List<int> ();
-
+	public string currentEnemy;
+	public int currentLocationforEnemy;
+	public int currentEnemyValue;
+	public int BSint;
 
 
 	public void Awake(){
@@ -70,7 +73,9 @@ public class Combat : MonoBehaviour {
 
 
 	void Start(){
-		
+		computerButton1.enabled = false;
+		computerButton2.enabled = false;
+		computerButton3.enabled = false;
 		randomEnemy.Add (0);
 		randomEnemy.Add (1);
 		randomEnemy.Add (2);
@@ -131,21 +136,33 @@ public class Combat : MonoBehaviour {
 		computerButton3 = computerButton3.GetComponent<Button> ();
 		Buttonupdate ();
 		total = 0;
-
 //		Button1.GetComponentInChildren<Text>().text = Names[0];
 //		Button2.GetComponentInChildren<Text>().text = Names[1];
 //		Button3.GetComponentInChildren<Text>().text = Names[2];
+		BSint = getRandomEnemy();
+
 	}
 
+	public int totalPressed =0;
 	public int getRandomEnemy(){
-		int temp = Random.Range (0, 2);
-		while(randomEnemy.Contains(temp) == false){
-			temp = Random.Range (0, 2);
-		} 
+		int temp = Random.Range (0, 3);
+			while (randomEnemy.Contains (temp) == false) {
+				temp = Random.Range (0, 3);
+			if (randomEnemy.Count == 3) {
+				waitNextScene ();
+			}
+
+			} 
+		Versus.text = "You are currently facing : " + enemyNames [temp] + " - " + enemyValues [temp];
+			currentEnemy = enemyNames [temp];
+			currentLocationforEnemy = temp;
+			currentEnemyValue = int.Parse (enemyValues [temp]);
+
 		return temp;
 	} 
 
 	public void buttonOne(){
+		totalPressed = totalPressed + 1;
 		playerButton1.enabled = false;
 		cantClick (playerButton1, playerOneValue);
 		int j = CombatResult (0);
@@ -156,10 +173,15 @@ public class Combat : MonoBehaviour {
 		}  else if (j==3){//==2) {
 			decision (playerOneString,playerOneValue, computerOneValue,computerOneString,playerButton1,computerButton1,"draw");
 		}
+		if (randomEnemy.Count != 0 ) {
+			BSint = getRandomEnemy ();
+
+		}
 		//decision ("rony","rony2", playerButton1, playerButton2,"death1");
 
 	}
 	public void buttonTwo(){
+		totalPressed = totalPressed + 1;
 		playerButton2.enabled = false;
 		cantClick (playerButton2, playerTwoValue);
 		int j = CombatResult (1);
@@ -170,10 +192,15 @@ public class Combat : MonoBehaviour {
 		}  else if (j==3){//==2) {
 			decision (playerTwoString,playerTwoValue,computerTwoValue,computerTwoString,playerButton2,computerButton2,"draw");
 		}
+		if (randomEnemy.Count != 0 ) {
+			BSint = getRandomEnemy ();
+
+		}
 
 	}
 	public void buttonThree(){
 		playerButton3.enabled = false;
+		totalPressed = totalPressed + 1;
 		cantClick (playerButton3, playerThreeValue);
 
 		int j = CombatResult (2);
@@ -183,6 +210,10 @@ public class Combat : MonoBehaviour {
 			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"death1");
 		}  else if (j==3){//==2) {
 			decision (playerThreeString,playerThreeValue,computerThreeValue,computerThreeString,playerButton3,computerButton3,"draw");
+		}
+		if (randomEnemy.Count != 0) {
+			BSint = getRandomEnemy ();
+
 		}
 
 	}
@@ -235,7 +266,13 @@ public class Combat : MonoBehaviour {
 	}
 
 	int disableCount=0;
+	public int disableOn=0;
 	public void disableButton(){
+		if (disableOn == 0) {
+			disableOn = 1;
+		} else if (disableOn == 1) {
+			disableOn = 0;
+		}
 		if (disableCount % 2 == 0) {
 			playerOneValue.text = "-";
 			playerTwoValue.text = "-";
@@ -267,30 +304,87 @@ public class Combat : MonoBehaviour {
 	}
 
 	public void decision(string characterText1, Text characterValue1, Text characterValue2, string characterText2, Button characterButton1, Button characterButton2, string result){
-		characterButton2.GetComponentInChildren<Text> ().text = "-";
-		Versus.text = characterText1 + " VS " + characterText2; 
+		//here to update character death
+
 		if (result == "death1") {
-			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
-			characterButton2.enabled = true;
-			characterValue2.text = computerd[characterText2];
+			if (currentLocationforEnemy == 0) {
+				computerButton1.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerOneValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton1.enabled = true;
+				
+			} else if (currentLocationforEnemy == 1) {
+				computerButton2.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerTwoValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton2.enabled = true;
+			} else if (currentLocationforEnemy == 2) {
+				computerButton3.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerThreeValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton3.enabled = true;
+			}
 		} else if (result == "death2") {
+			characterDeath (currentLocationforEnemy);
 			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
 			characterButton1.enabled = true;
-			characterValue1.text = playerd[characterText1];
+			if (disableOn == 0) {
+				characterValue1.text = playerd [characterText1];
+			}
 		} else if (result == "draw") {
 			characterButton1.GetComponentInChildren<Text> ().text = characterText1;
-			characterButton2.GetComponentInChildren<Text> ().text = characterText2;
+			if (currentLocationforEnemy == 0) {
+				computerButton1.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerOneValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton1.enabled = true;
+			} else if (currentLocationforEnemy == 1) {
+				computerButton2.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerTwoValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton2.enabled = true;
+			} else if (currentLocationforEnemy == 2) {
+				computerButton3.GetComponentInChildren<Text> ().text = enemyNames[currentLocationforEnemy];
+				if (disableOn == 0) {
+					computerThreeValue.text = enemyValues [currentLocationforEnemy];
+				}
+				computerButton3.enabled = true;
+			}
 			characterButton1.enabled = true;
-			characterButton2.enabled = true;
-			characterValue1.text = playerd[characterText1];
-			characterValue2.text = computerd[characterText2];
+			if (disableOn == 0) {
+				characterValue1.text = playerd [characterText1];
+			}
 		}
 
+
+	}
+
+	public void characterDeath(int x){
+		if (x == 0) {
+			computerButton1.GetComponentInChildren<Text> ().text = "-";
+			computerOneValue.text = "-";
+			computerButton1.enabled = false;
+		} else if (x == 1) {
+			computerButton2.GetComponentInChildren<Text> ().text = "-";
+			computerTwoValue.text = "-";
+			computerButton2.enabled = false;
+		} else if (x == 2) {
+			computerButton3.GetComponentInChildren<Text> ().text = "-";
+			computerThreeValue.text = "-";
+			computerButton3.enabled = false;
+		}
 	}
 
 
 	public int CombatResult (int PlayerValue){
-		int enemyLocation = getRandomEnemy();
+
+		int enemyLocation = BSint;
+		
 		string compName;
 		string compVal;
 		string playerName;
@@ -387,23 +481,25 @@ public class Combat : MonoBehaviour {
 
 				playerName = Names [PlayerValue];
 				playerVal = Values [PlayerValue];
-			compVal = cpuValues [enemyLocation];
+				compVal = cpuValues [enemyLocation];
 				compName = cpuNames [enemyLocation];
 
 				drawCounter++;
 
 			}
+	
 
 		recordResult (playerName, playerVal, compName, compVal, outcome);
 
-			if (Values.Count == 0) {
+			/*if (randomEnemy.Count == 0) {
 				reviewList.Insert (0, "win");
 				StartCoroutine (waitNextScene ());
 				return 1;
-			} else if (cpuValues.Count == 0) {
+			} */ if (randomEnemy.Count == 0) {
 				reviewList.Insert (0, "win");
 				StartCoroutine (waitNextScene ());
 				return 2;
+
 			}else if (lostCounter == 3) {
 				reviewList.Insert (0, "lost");
 				StartCoroutine (waitNextScene ());
@@ -416,7 +512,7 @@ public class Combat : MonoBehaviour {
 			/*if (counter == 3) {
 				StartCoroutine (waitNextScene ());
 			}*/
-
+		
 			return outcome;
 		}
 		

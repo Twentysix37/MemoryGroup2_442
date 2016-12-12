@@ -149,7 +149,13 @@ public class selectionScript2 : MonoBehaviour {
 			playerDict.Add (characterOneString,"");
 
 		}
-		characterTwo.enabled = false;
+		characterOne.enabled = false;
+		characterTwo.enabled = false; //This
+		characterThree.enabled = false;
+		characterFour.enabled = false;
+		characterFive.enabled = false;
+		characterSix.enabled = false;
+
 		characterTwo.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -164,7 +170,12 @@ public class selectionScript2 : MonoBehaviour {
 			playerDict.Add (characterTwoString,"");
 
 		}
-		characterOne.enabled = false;
+		characterOne.enabled = false; // This
+		characterTwo.enabled = false;
+		characterThree.enabled = false;
+		characterFour.enabled = false;
+		characterFive.enabled = false;
+		characterSix.enabled = false;
 		characterOne.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -179,8 +190,13 @@ public class selectionScript2 : MonoBehaviour {
 		if (counter % 2 != 0) {
 			playerDict.Add (characterThreeString,"");
 
-		} 
-		characterThree.enabled = false;
+		}
+		characterOne.enabled = false;
+		characterTwo.enabled = false;
+		characterThree.enabled = false; //This
+		characterFour.enabled = false;
+		characterFive.enabled = false;
+		characterSix.enabled = false;
 		characterThree.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -197,7 +213,12 @@ public class selectionScript2 : MonoBehaviour {
 		}
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
+		characterOne.enabled = false;
+		characterTwo.enabled = false;
+		characterThree.enabled = false;
 		characterFour.enabled = false;
+		characterFive.enabled = false;
+		characterSix.enabled = false;
 		characterFour.GetComponentInChildren<Text> ().text = "-";
 	}
 
@@ -210,7 +231,12 @@ public class selectionScript2 : MonoBehaviour {
 			playerDict.Add (characterFiveString,"");
 
 		} 
+		characterOne.enabled = false;
+		characterTwo.enabled = false;
+		characterThree.enabled = false;
+		characterFour.enabled = false;
 		characterFive.enabled = false;
+		characterSix.enabled = false;
 		characterFive.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -225,7 +251,12 @@ public class selectionScript2 : MonoBehaviour {
 			playerDict.Add (characterSixString,"");
 
 		} 
-		characterSix.enabled = false;
+		characterOne.enabled = false;
+		characterTwo.enabled = false;
+		characterThree.enabled = false;
+		characterFour.enabled = false;
+		characterFive.enabled = false;
+		characterSix.enabled = false;//This
 		characterSix.GetComponentInChildren<Text> ().text = "-";
 		//change the image to the character name
 		//add the character/value to dictionary depending on the turn
@@ -252,6 +283,24 @@ public class selectionScript2 : MonoBehaviour {
 		characterUpdate ();
 		characterUpdate (); //for computer
 		//store into a map
+		 if (characterOne.GetComponentInChildren<Text> ().text != "-") {
+			characterOne.enabled = true;
+		}
+		if (characterTwo.GetComponentInChildren<Text> ().text != "-") {
+			characterTwo.enabled = true;
+		}
+		if (characterThree.GetComponentInChildren<Text> ().text != "-") {
+			characterThree.enabled = true;
+		}
+		if (characterFour.GetComponentInChildren<Text> ().text != "-") {
+			characterFour.enabled = true;
+		}
+		if (characterFive.GetComponentInChildren<Text> ().text != "-") {
+			characterFive.enabled = true;
+		}
+		if (characterSix.GetComponentInChildren<Text> ().text != "-") {
+			characterSix.enabled = true;
+		}
 	}
 
 	public void valueTwoPress(){
@@ -260,6 +309,24 @@ public class selectionScript2 : MonoBehaviour {
 		characterUpdate ();
 		characterUpdate (); //for computer
 		//store into a map
+		if (characterOne.GetComponentInChildren<Text> ().text != "-") {
+			characterOne.enabled = true;
+		} 
+		if (characterTwo.GetComponentInChildren<Text> ().text != "-") {
+			characterTwo.enabled = true;
+		} 
+		if (characterThree.GetComponentInChildren<Text> ().text != "-") {
+			characterThree.enabled = true;
+		} 
+		if (characterFour.GetComponentInChildren<Text> ().text != "-") {
+			characterFour.enabled = true;
+		} 
+		if (characterFive.GetComponentInChildren<Text> ().text != "-") {
+			characterFive.enabled = true;
+		} 
+		if (characterSix.GetComponentInChildren<Text> ().text != "-") {
+			characterSix.enabled = true;
+		}
 	}
 
 	public void characterUpdate(){
